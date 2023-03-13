@@ -14,7 +14,7 @@ class body_mainpageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: 340,
+      height: 360,
       width: double.infinity,
       child: TabBarView(
         children: [

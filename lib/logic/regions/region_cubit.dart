@@ -11,7 +11,7 @@ class RegionCubit extends Cubit<RegionState> {
             [
               region(
                   id: '0',
-                  title: "Qoraqalpog`iston.Res",
+                  title: "Qoraqalpog`iston Respublikasi",
                   MapUrl: "assets/images/map/nukus.png"),
               region(
                   id: '1',
@@ -39,20 +39,20 @@ class RegionCubit extends Cubit<RegionState> {
                   MapUrl: "assets/images/map/naman.png"),
               region(
                   id: '7',
+                  title: "Samarqand",
+                  MapUrl: "assets/images/map/Qarshi.png"),
+              region(
+                  id: '8',
                   title: "Navoiy",
                   MapUrl: "assets/images/map/Navoi.png"),
               region(
-                  id: '8',
-                  title: "Qashqadaryo",
-                  MapUrl: "assets/images/map/Qarshi.png"),
-              region(
                   id: '9',
-                  title: "Samarqand",
-                  MapUrl: "assets/images/map/Sam.png"),
-              region(
-                  id: '10',
                   title: "Sirdaryo",
                   MapUrl: "assets/images/map/SirDar.png"),
+              region(
+                  id: '10',
+                  title: "Qashqadaryo",
+                  MapUrl: "assets/images/map/Qarshi.png"),
               region(
                   id: '11',
                   title: "Surxandaryo",

@@ -18,7 +18,7 @@ class RegionMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Isselect ? 110 : 95,
+      height: Isselect ? 115 : 95,
       child: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
@@ -37,9 +37,15 @@ class RegionMenu extends StatelessWidget {
           ),
           Positioned(
             bottom: 0,
-            child: Text(
-              title,
-              style: TextStyle(fontSize: 16, fontWeight: FontWeight.bold),
+            child: Container(
+              width: 110,
+              child: Text(
+                title,
+                textAlign: TextAlign.center,
+                style: TextStyle(
+                    fontSize: title.length < 12 ? 16 : 12,
+                    fontWeight: FontWeight.bold),
+              ),
             ),
           ),
         ],

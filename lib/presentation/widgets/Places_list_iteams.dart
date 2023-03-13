@@ -102,29 +102,21 @@ class PlacesListIteams extends StatelessWidget {
                           ],
                         ),
                       )
-
-                      // IconButton(
-                      //   onPressed: () {},
-                      //   icon: Icon(
-                      //     Icons.photo_library_sharp,
-                      //     color: Colors.white,
-                      //   ),
-                      // ),
                     ],
                   ),
                 ),
                 Positioned(
-                  top: 190,
+                  top: 225,
                   child: Column(
                     children: [
                       Text(
                         places.title,
                         style: TextStyle(
-                            color: Colors.white,
+                            color: Colors.white.withOpacity(0.7),
                             fontSize: 18,
                             fontWeight: FontWeight.w500),
                       ),
-                      SizedBox(height: 10),
+                      SizedBox(height: 6),
                       Container(
                         width: 210,
                         child: Text(
@@ -135,8 +127,8 @@ class PlacesListIteams extends StatelessWidget {
                             wordSpacing: 1,
                             height: 1.3,
                             fontStyle: FontStyle.italic,
-                            color: Colors.white,
-                            fontSize: 14,
+                            color: Colors.white.withOpacity(0.6),
+                            fontSize: 12,
                             fontWeight: FontWeight.w300,
                           ),
                         ),

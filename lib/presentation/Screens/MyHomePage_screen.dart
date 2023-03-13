@@ -26,7 +26,7 @@ class _MyHomePageState extends State<MyHomePage> {
                     style: TextStyle(color: Colors.white),
                   ),
                 ),
-      bottomSheet: Container(
+      bottomNavigationBar: Container(
         height: 60,
         child: BottomNavigationBar(
           type: BottomNavigationBarType.fixed,

@@ -13,7 +13,7 @@ class TripPlacesCubit extends Cubit<TripPlacesState> {
               place(
                 id: UniqueKey().toString(),
                 title: 'Ark Qo`rg`oni',
-                regionId: '0',
+                regionId: '2',
                 ImagesUrl: [
                   'assets/images/Regions/ark1.jpg',
                   'assets/images/Regions/ark2.jpg',
@@ -28,7 +28,7 @@ class TripPlacesCubit extends Cubit<TripPlacesState> {
               place(
                 id: UniqueKey().toString(),
                 title: 'Minorai Kalon',
-                regionId: '0',
+                regionId: '2',
                 ImagesUrl: [
                   'assets/images/Regions/minor1.jpg',
                   'assets/images/Regions/minor2.jpg',
@@ -43,7 +43,7 @@ class TripPlacesCubit extends Cubit<TripPlacesState> {
               place(
                 id: UniqueKey().toString(),
                 title: 'Ismoil Samoniy Maqbarasi',
-                regionId: '0',
+                regionId: '2',
                 ImagesUrl: [
                   'assets/images/Regions/sa1.jpg',
                   'assets/images/Regions/sa2.jpg',
@@ -58,7 +58,7 @@ class TripPlacesCubit extends Cubit<TripPlacesState> {
               place(
                 id: UniqueKey().toString(),
                 title: 'Registon',
-                regionId: '1',
+                regionId: '7',
                 ImagesUrl: [
                   'assets/images/Regions/sam/re1.jpg',
                   'assets/images/Regions/sam/re2.jpg',
@@ -73,7 +73,7 @@ class TripPlacesCubit extends Cubit<TripPlacesState> {
               place(
                 id: UniqueKey().toString(),
                 title: 'Go`ri Amir',
-                regionId: '1',
+                regionId: '7',
                 ImagesUrl: [
                   'assets/images/Regions/sam/go`.jpg',
                   'assets/images/Regions/sam/go2.jpg',
@@ -88,7 +88,7 @@ class TripPlacesCubit extends Cubit<TripPlacesState> {
               place(
                 id: UniqueKey().toString(),
                 title: 'Bibixonim',
-                regionId: '1',
+                regionId: '7',
                 ImagesUrl: [
                   'assets/images/Regions/sam/bi1.jpg',
                   'assets/images/Regions/sam/bi2.jpg',
@@ -103,7 +103,7 @@ class TripPlacesCubit extends Cubit<TripPlacesState> {
               place(
                 id: UniqueKey().toString(),
                 title: 'Ko‘kaldosh madrasasi',
-                regionId: '2',
+                regionId: '12',
                 ImagesUrl: [
                   'assets/images/Regions/tosh/kok1.jpg',
                   'assets/images/Regions/tosh/ko`k2.jpg',
@@ -118,7 +118,7 @@ class TripPlacesCubit extends Cubit<TripPlacesState> {
               place(
                 id: UniqueKey().toString(),
                 title: 'Baroqxon madrasasi',
-                regionId: '2',
+                regionId: '12',
                 ImagesUrl: [
                   'assets/images/Regions/tosh/ba1.jpg',
                   'assets/images/Regions/tosh/ba2.jpg',
@@ -133,7 +133,7 @@ class TripPlacesCubit extends Cubit<TripPlacesState> {
               place(
                 id: UniqueKey().toString(),
                 title: 'Hazrati Imom',
-                regionId: '2',
+                regionId: '12',
                 ImagesUrl: [
                   'assets/images/Regions/tosh/ha1.jpg',
                   'assets/images/Regions/tosh/ha2.png',
