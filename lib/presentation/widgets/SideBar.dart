@@ -25,6 +25,17 @@ class SideBar extends StatelessWidget {
                 'Bosh Sahifa',
               ),
             ),
+//enter  StateManegment Page
+            ListTile(
+              onTap: () =>
+                  Navigator.of(context).pushReplacementNamed('Manegment'),
+              leading: Icon(
+                Icons.phonelink_setup_outlined,
+              ),
+              title: Text(
+                'Ma`lumotlarni Boshqarish',
+              ),
+            ),
           ],
         ),
       ),

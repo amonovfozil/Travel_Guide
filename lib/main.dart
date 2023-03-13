@@ -3,6 +3,7 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_guide/logic/Trip/TripPlaces_cubit.dart';
 import 'package:travel_guide/logic/regions/region_cubit.dart';
 import 'package:travel_guide/presentation/Screens/MyHomePage_screen.dart';
+import 'package:travel_guide/presentation/Screens/manegment_state_screen.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,7 +31,10 @@ class MyApp extends StatelessWidget {
           primarySwatch: Colors.blueGrey,
         ),
         home: MyHomePage(),
-        routes: {},
+        routes: {
+          'Manegment': (context) => StateManegmentScreen(),
+          'PlaceRegion': (context) => PlacesFromregion()
+        },
       ),
     );
   }
