@@ -5,6 +5,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:travel_guide/Data/Model_Places.dart';
 import 'package:travel_guide/logic/regions/region_cubit.dart';
+import 'package:travel_guide/presentation/widgets/Body_mainPageScreen.dart';
 import 'package:travel_guide/presentation/widgets/Places_list_iteams.dart';
 import 'package:travel_guide/presentation/widgets/Region_Menu.dart';
 import 'package:travel_guide/presentation/widgets/SideBar.dart';
@@ -154,30 +155,7 @@ class _MainPageScrrenState extends State<MainPageScrren>
                 ),
               ),
               SizedBox(height: 15),
-              Container(
-                height: 360,
-                width: double.infinity,
-                child: TabBarView(
-                  children: [
-                    TabBarView(
-                      controller: _tabcontroller,
-                      children: [
-                        PlacesListIteams(index: 0, type: category.historical),
-                        PlacesListIteams(index: 1, type: category.historical),
-                        PlacesListIteams(index: 2, type: category.historical),
-                      ],
-                    ),
-                    TabBarView(
-                      controller: _tabcontroller,
-                      children: [
-                        PlacesListIteams(index: 0, type: category.nature),
-                        PlacesListIteams(index: 1, type: category.nature),
-                        PlacesListIteams(index: 2, type: category.nature),
-                      ],
-                    ),
-                  ],
-                ),
-              ),
+              body_mainpageScreen(tabcontroller: _tabcontroller),
             ],
           ),
         ),
