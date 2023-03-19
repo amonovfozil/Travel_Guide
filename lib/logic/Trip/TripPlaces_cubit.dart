@@ -149,9 +149,10 @@ class TripPlacesCubit extends Cubit<TripPlacesState> {
           ),
         );
   List<place> placeFilterByRegion(int index, [category? type]) {
-    return state.Places.where((element) =>
-        element.regionId == index.toString() ||
-        element.TypeCategory == type).toList();
+    return state.Places.where((element) => type == null
+        ? element.regionId == index.toString()
+        : element.regionId == index.toString() &&
+            element.TypeCategory == type).toList();
   }
 
   void ToggleFavority(String id) {

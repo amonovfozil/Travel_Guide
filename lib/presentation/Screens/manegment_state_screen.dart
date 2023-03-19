@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:travel_guide/presentation/widgets/SideBar.dart';
 
 import '../../Data/Model_Places.dart';
 import '../../Data/regions.dart';
@@ -17,6 +18,7 @@ class StateManegmentScreen extends StatelessWidget {
         title: Text('Ma`lumotlarni boshqarish'),
         centerTitle: true,
       ),
+      drawer: SideBar(),
       body: SingleChildScrollView(
         child: Column(
           children: regions
@@ -81,6 +83,12 @@ class PlacesFromregion extends StatelessWidget {
                       ),
                     ),
                     title: Text(places.title),
+                    trailing: IconButton(
+                      onPressed: () {},
+                      icon: Icon(
+                        Icons.edit,
+                      ),
+                    ),
                   ),
                 ),
               ).toList(),
