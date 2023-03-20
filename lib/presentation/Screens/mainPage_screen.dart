@@ -1,12 +1,8 @@
-import 'package:carousel_slider/carousel_options.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:provider/provider.dart';
 import 'package:travel_guide/Data/Model_Places.dart';
-import 'package:travel_guide/logic/regions/region_cubit.dart';
+import 'package:travel_guide/Data/regions.dart';
 import 'package:travel_guide/presentation/widgets/Body_mainPageScreen.dart';
-import 'package:travel_guide/presentation/widgets/Places_list_iteams.dart';
 import 'package:travel_guide/presentation/widgets/Region_Menu.dart';
 import 'package:travel_guide/presentation/widgets/SideBar.dart';
 
@@ -20,13 +16,15 @@ class MainPageScrren extends StatefulWidget {
 class _MainPageScrrenState extends State<MainPageScrren>
     with TickerProviderStateMixin {
   late TabController _tabcontroller = TabController(
-      length: context.read<RegionCubit>().state.regions.length, vsync: this);
+      length: Provider.of<Regions>(context).list.length, vsync: this);
   @override
   final _scaffoldKey = GlobalKey<ScaffoldState>();
   int indexImage = 0;
   category page = category.historical;
+
   @override
   Widget build(BuildContext context) {
+    final regions = Provider.of<Regions>(context).list;
     return DefaultTabController(
       length: 2,
       child: Scaffold(
@@ -80,35 +78,30 @@ class _MainPageScrrenState extends State<MainPageScrren>
                       fontWeight: FontWeight.w600),
                 ),
               ),
-              BlocBuilder<RegionCubit, RegionState>(
-                builder: (context, state) {
-                  return Padding(
-                    padding: const EdgeInsets.only(top: 20),
-                    child: TabBar(
-                      unselectedLabelColor: page == category.historical
-                          ? Colors.blueGrey
-                          : Colors.teal,
-                      splashFactory: NoSplash.splashFactory,
-                      indicator: BoxDecoration(),
-                      isScrollable: true,
-                      controller: _tabcontroller,
-                      tabs: state.regions
-                          .map(
-                            (region) => RegionMenu(
-                              title: region.title,
-                              imageUrl: region.MapUrl,
-                              isPage: page,
-                              Isselect:
-                                  indexImage == state.regions.indexOf(region),
-                            ),
-                          )
-                          .toList(),
-                      onTap: (value) => setState(() {
-                        indexImage = value;
-                      }),
-                    ),
-                  );
-                },
+              Padding(
+                padding: const EdgeInsets.only(top: 20),
+                child: TabBar(
+                  unselectedLabelColor: page == category.historical
+                      ? Colors.blueGrey
+                      : Colors.teal,
+                  splashFactory: NoSplash.splashFactory,
+                  indicator: BoxDecoration(),
+                  isScrollable: true,
+                  controller: _tabcontroller,
+                  tabs: regions
+                      .map(
+                        (region) => RegionMenu(
+                          title: region.title,
+                          imageUrl: region.MapUrl,
+                          isPage: page,
+                          Isselect: indexImage == regions.indexOf(region),
+                        ),
+                      )
+                      .toList(),
+                  onTap: (value) => setState(() {
+                    indexImage = value;
+                  }),
+                ),
               ),
               SizedBox(height: 20),
               Padding(
