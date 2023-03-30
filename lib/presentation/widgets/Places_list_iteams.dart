@@ -1,7 +1,10 @@
+import 'dart:io';
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_guide/Data/Model_Places.dart';
+import 'package:travel_guide/Data/Providers/Placeprovider.dart';
 
 class PlacesListIteams extends StatelessWidget {
   final int index;
@@ -14,7 +17,8 @@ class PlacesListIteams extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Places = Provider.of<Placess>(context).placeFilterByRegion(index);
+    final Places =
+        Provider.of<Placesproviders>(context).placeFilterByRegion(index, type);
     return CarouselSlider(
       items: Places.map(
         (places) => Stack(
@@ -23,12 +27,19 @@ class PlacesListIteams extends StatelessWidget {
             ClipRRect(
               borderRadius: BorderRadius.circular(25.6),
               clipBehavior: Clip.hardEdge,
-              child: Image.asset(
-                places.ImagesUrl[0],
-                fit: BoxFit.cover,
-                height: 340,
-                width: 280,
-              ),
+              child: places.Image[0] is String
+                  ? Image.asset(
+                      places.Image[0],
+                      fit: BoxFit.cover,
+                      height: 340,
+                      width: 280,
+                    )
+                  : Image.file(
+                      places.Image[0],
+                      fit: BoxFit.cover,
+                      height: 340,
+                      width: 280,
+                    ),
             ),
             Container(
               height: 340,
@@ -59,7 +70,9 @@ class PlacesListIteams extends StatelessWidget {
                 children: [
                   IconButton(
                     splashRadius: 20,
-                    onPressed: () {},
+                    onPressed: () =>
+                        Provider.of<Placesproviders>(context, listen: false)
+                            .ToggleFavority(places.id),
                     icon: places.islike
                         ? Icon(
                             Icons.favorite,

@@ -1,6 +1,8 @@
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:travel_guide/Data/Model_Places.dart';
 import 'package:travel_guide/presentation/Screens/favorites_pageScreen.dart';
+import 'package:travel_guide/presentation/Screens/google_map.dart';
 import 'package:travel_guide/presentation/Screens/mainPage_screen.dart';
 
 class MyHomePage extends StatefulWidget {
@@ -18,14 +20,22 @@ class _MyHomePageState extends State<MyHomePage> {
       backgroundColor: Colors.blueGrey.shade900,
       body: NavigationPageIndex == 0
           ? MainPageScrren()
-          : NavigationPageIndex == 2
-              ? FavoritesPage()
-              : const Center(
-                  child: Text(
-                    'Hali mavjud emas',
-                    style: TextStyle(color: Colors.white),
-                  ),
-                ),
+          : NavigationPageIndex == 1
+              ? MapSample(
+                  IsSelected: false,
+                  placeslocation: Placelocation(
+                      adress: 'Toshkent',
+                      Latitude: 41.2825125,
+                      Longitude: 69.1392805),
+                )
+              : NavigationPageIndex == 2
+                  ? FavoritesPage()
+                  : const Center(
+                      child: Text(
+                        'Hali mavjud emas',
+                        style: TextStyle(color: Colors.white),
+                      ),
+                    ),
       bottomNavigationBar: Container(
         height: 60,
         child: BottomNavigationBar(

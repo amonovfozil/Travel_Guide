@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_guide/Data/Model_Places.dart';
+import 'package:travel_guide/Data/Providers/Placeprovider.dart';
 import 'package:travel_guide/Data/regions.dart';
 import 'package:travel_guide/presentation/Screens/MyHomePage_screen.dart';
 import 'package:travel_guide/presentation/Screens/add_Place_Screen.dart';
@@ -22,7 +23,7 @@ class MyApp extends StatelessWidget {
           create: (context) => Regions(),
         ),
         ChangeNotifierProvider(
-          create: (context) => Placess(),
+          create: (context) => Placesproviders(),
         )
       ],
       child: MaterialApp(

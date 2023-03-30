@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_guide/Data/Model_Places.dart';
+import 'package:travel_guide/Data/Providers/Placeprovider.dart';
 import 'package:travel_guide/Data/regions.dart';
 import 'package:travel_guide/presentation/widgets/SideBar.dart';
 
@@ -52,7 +55,8 @@ class PlacesFromregion extends StatelessWidget {
         ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>;
     final regionId = Data['id'];
     final regionTitle = Data['region'];
-    final Places = Provider.of<Placess>(context).placeFilterByRegion(regionId);
+    final Places =
+        Provider.of<Placesproviders>(context).placeFilterByRegion(regionId);
     return Scaffold(
         appBar: AppBar(
           title: Text(regionTitle),
@@ -75,10 +79,12 @@ class PlacesFromregion extends StatelessWidget {
                     decoration: BoxDecoration(
                       borderRadius: BorderRadius.circular(10),
                     ),
-                    child: Image.asset(
-                      places.ImagesUrl[0],
-                      fit: BoxFit.cover,
-                    ),
+                    child: places.Image[0].startsWith('asssets/')
+                        ? Image.asset(places.Image[0])
+                        : Image.file(
+                            places.Image[0],
+                            fit: BoxFit.cover,
+                          ),
                   ),
                   title: Text(places.title),
                   trailing: IconButton(

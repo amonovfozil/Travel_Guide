@@ -36,4 +36,8 @@ class Regions with ChangeNotifier {
   List<region> get list {
     return _regions;
   }
+
+  String getregionid(String title) {
+    return _regions.firstWhere((element) => element.title == title).id;
+  }
 }

@@ -28,7 +28,7 @@ class SideBar extends StatelessWidget {
 //enter  StateManegment Page
             ListTile(
               onTap: () =>
-                  Navigator.of(context).pushReplacementNamed('Manegment'),
+                  Navigator.of(context).pushReplacementNamed('AddPlaces'),
               leading: Icon(
                 Icons.phonelink_setup_outlined,
               ),

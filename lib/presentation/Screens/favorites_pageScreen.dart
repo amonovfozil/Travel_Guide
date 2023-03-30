@@ -1,6 +1,9 @@
+import 'dart:io';
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_guide/Data/Model_Places.dart';
+import 'package:travel_guide/Data/Providers/Placeprovider.dart';
 import 'package:travel_guide/presentation/widgets/SideBar.dart';
 
 class FavoritesPage extends StatelessWidget {
@@ -8,7 +11,7 @@ class FavoritesPage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final Favorites = Provider.of<Placess>(context).favorityPlaces();
+    final Favorites = Provider.of<Placesproviders>(context).favorityPlaces();
     return Scaffold(
       appBar: AppBar(
         title: Text(
@@ -35,10 +38,13 @@ class FavoritesPage extends StatelessWidget {
                         child: Container(
                           height: 220,
                           width: double.infinity,
-                          child: Image.asset(
-                            Favorites[index].ImagesUrl[0],
-                            fit: BoxFit.cover,
-                          ),
+                          child: Favorites[index].Image[0] is String
+                              ? Image.asset(Favorites[index].Image[0],
+                                  fit: BoxFit.cover)
+                              : Image.file(
+                                  Favorites[index].Image[0],
+                                  fit: BoxFit.cover,
+                                ),
                         ),
                         footer: Container(
                           height: 60,
@@ -48,7 +54,9 @@ class FavoritesPage extends StatelessWidget {
                             children: [
                               IconButton(
                                 splashRadius: 20,
-                                onPressed: () => Provider.of<Placess>(context)
+                                onPressed: () => Provider.of<Placesproviders>(
+                                        context,
+                                        listen: false)
                                     .ToggleFavority(Favorites[index].id),
                                 icon: Favorites[index].islike
                                     ? Icon(
