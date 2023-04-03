@@ -13,7 +13,7 @@ class region {
 }
 
 class Regions with ChangeNotifier {
-  List<region> _regions = [
+   List<region> _regions = [
     region(
         id: '0',
         title: "Qoraqalpog`iston Respublikasi",

@@ -1,17 +1,16 @@
 import 'package:flutter/material.dart';
-import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:location/location.dart';
-import 'package:travel_guide/Data/Model_Places.dart';
+import 'package:google_maps_flutter/google_maps_flutter.dart';
+
+import '../../Data/models/Model_Places.dart';
 
 class MapSample extends StatefulWidget {
   final Placelocation placeslocation;
   final bool IsSelected;
 
-  const MapSample({
-    required this.IsSelected,
-    required this.placeslocation,
-    Key? key,
-  }) : super(key: key);
+  const MapSample(
+      {required this.IsSelected, required this.placeslocation, Key? key})
+      : super(key: key);
 
   @override
   State<MapSample> createState() => MapSampleState();

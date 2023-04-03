@@ -1,14 +1,20 @@
+import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_guide/Data/Model_Places.dart';
+import 'package:travel_guide/Data/models/Model_Places.dart';
 import 'package:travel_guide/Data/Providers/Placeprovider.dart';
-import 'package:travel_guide/Data/regions.dart';
+import 'package:travel_guide/Data/models/regions.dart';
 import 'package:travel_guide/presentation/Screens/MyHomePage_screen.dart';
 import 'package:travel_guide/presentation/Screens/add_Place_Screen.dart';
 import 'package:travel_guide/presentation/Screens/manegment_state_screen.dart';
 
-void main() {
+import 'package:firebase_storage/firebase_storage.dart';
+
+void main() async {
   runApp(const MyApp());
+  WidgetsFlutterBinding.ensureInitialized();
+  SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
 }
 
 class MyApp extends StatelessWidget {

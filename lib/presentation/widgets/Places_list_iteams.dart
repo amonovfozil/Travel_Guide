@@ -1,12 +1,12 @@
 import 'dart:io';
-
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_guide/Data/Model_Places.dart';
-import 'package:travel_guide/Data/Providers/Placeprovider.dart';
 
-class PlacesListIteams extends StatelessWidget {
+import '../../Data/models/Model_Places.dart';
+import '../../Data/Providers/Placeprovider.dart';
+
+class PlacesListIteams extends StatefulWidget {
   final int index;
   final category type;
 
@@ -16,156 +16,180 @@ class PlacesListIteams extends StatelessWidget {
   });
 
   @override
+  State<PlacesListIteams> createState() => _PlacesListIteamsState();
+}
+
+class _PlacesListIteamsState extends State<PlacesListIteams> {
+  var isloading = false;
+  void initState() {
+    isloading = true;
+    // TODO: implement initState
+    Future.delayed(Duration.zero).then((value) {
+      Provider.of<Placesproviders>(context, listen: false)
+          .getDataFromFireBase()
+          .then((_) {
+        isloading = false;
+      });
+    });
+    super.initState();
+  }
+
+  @override
   Widget build(BuildContext context) {
-    final Places =
-        Provider.of<Placesproviders>(context).placeFilterByRegion(index, type);
-    return CarouselSlider(
-      items: Places.map(
-        (places) => Stack(
-          alignment: AlignmentDirectional.topCenter,
-          children: [
-            ClipRRect(
-              borderRadius: BorderRadius.circular(25.6),
-              clipBehavior: Clip.hardEdge,
-              child: places.Image[0] is String
-                  ? Image.asset(
-                      places.Image[0],
-                      fit: BoxFit.cover,
-                      height: 340,
-                      width: 280,
-                    )
-                  : Image.file(
-                      places.Image[0],
-                      fit: BoxFit.cover,
-                      height: 340,
-                      width: 280,
-                    ),
-            ),
-            Container(
-              height: 340,
-              width: 280,
-              decoration: BoxDecoration(
-                borderRadius: BorderRadius.circular(25),
-                gradient: LinearGradient(
-                  begin: Alignment.topCenter,
-                  end: Alignment.bottomCenter,
-                  colors: [
-                    Colors.black.withOpacity(0.1),
-                    Colors.black.withOpacity(0.1),
-                    Colors.black.withOpacity(0.2),
-                    Colors.black.withOpacity(0.4),
-                    Colors.black.withOpacity(0.5),
-                    Colors.black.withOpacity(0.7),
-                    Colors.black.withOpacity(0.8),
-                    Colors.black.withOpacity(0.9),
-                    Colors.black.withOpacity(1),
-                  ],
-                ),
-              ),
-            ),
-            Padding(
-              padding: const EdgeInsets.all(8.0),
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    final Places = Provider.of<Placesproviders>(context)
+        .placeFilterByRegion(widget.index, widget.type);
+    return isloading
+        ? Center(
+            child: CircularProgressIndicator(),
+          )
+        : CarouselSlider(
+            items: Places.map(
+              (places) => Stack(
+                alignment: AlignmentDirectional.topCenter,
                 children: [
-                  IconButton(
-                    splashRadius: 20,
-                    onPressed: () =>
-                        Provider.of<Placesproviders>(context, listen: false)
-                            .ToggleFavority(places.id),
-                    icon: places.islike
-                        ? Icon(
-                            Icons.favorite,
-                            color: Colors.red,
-                            size: 28,
+                  ClipRRect(
+                    borderRadius: BorderRadius.circular(25.6),
+                    clipBehavior: Clip.hardEdge,
+                    child: places.Image[0].startsWith('assets/')
+                        ? Image.asset(
+                            places.Image[0],
+                            fit: BoxFit.cover,
+                            height: 360,
+                            width: 300,
                           )
-                        : Icon(
-                            Icons.favorite_outline,
-                            color: Colors.white,
-                            size: 28,
+                        : Image.network(
+                            places.Image[0],
+                            fit: BoxFit.cover,
+                            height: 360,
+                            width: 300,
                           ),
                   ),
                   Container(
-                    width: 60,
-                    height: 32,
+                    height: 360,
+                    width: 300,
                     decoration: BoxDecoration(
-                      borderRadius: BorderRadius.circular(15),
-                      color: Colors.white.withOpacity(0.5),
-                    ),
-                    child: Row(
-                      mainAxisAlignment: MainAxisAlignment.center,
-                      children: [
-                        Text(
-                          '4.6',
-                          style: TextStyle(
-                              color: Colors.white,
-                              fontWeight: FontWeight.w600,
-                              fontSize: 14),
-                        ),
-                        Icon(
-                          Icons.star_rate_rounded,
-                          color: Colors.yellow,
-                        ),
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            ),
-            Positioned(
-              top: 225,
-              child: Column(
-                children: [
-                  Text(
-                    places.title,
-                    style: TextStyle(
-                        color: Colors.white.withOpacity(0.7),
-                        fontSize: 18,
-                        fontWeight: FontWeight.w500),
-                  ),
-                  SizedBox(height: 6),
-                  Container(
-                    width: 210,
-                    child: Text(
-                      places.descriptions,
-                      textAlign: TextAlign.center,
-                      maxLines: 3,
-                      style: TextStyle(
-                        wordSpacing: 1,
-                        height: 1.3,
-                        fontStyle: FontStyle.italic,
-                        color: Colors.white.withOpacity(0.6),
-                        fontSize: 12,
-                        fontWeight: FontWeight.w300,
+                      borderRadius: BorderRadius.circular(25),
+                      gradient: LinearGradient(
+                        begin: Alignment.topCenter,
+                        end: Alignment.bottomCenter,
+                        colors: [
+                          Colors.black.withOpacity(0.1),
+                          Colors.black.withOpacity(0.1),
+                          Colors.black.withOpacity(0.2),
+                          Colors.black.withOpacity(0.4),
+                          Colors.black.withOpacity(0.5),
+                          Colors.black.withOpacity(0.7),
+                          Colors.black.withOpacity(0.8),
+                          Colors.black.withOpacity(0.9),
+                          Colors.black.withOpacity(1),
+                        ],
                       ),
                     ),
                   ),
+                  Padding(
+                    padding: const EdgeInsets.all(8.0),
+                    child: Row(
+                      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                      children: [
+                        IconButton(
+                          splashRadius: 20,
+                          onPressed: () => Provider.of<Placesproviders>(context,
+                                  listen: false)
+                              .ToggleFavority(places.id),
+                          icon: places.islike
+                              ? Icon(
+                                  Icons.favorite,
+                                  color: Colors.red,
+                                  size: 28,
+                                )
+                              : Icon(
+                                  Icons.favorite_outline,
+                                  color: Colors.white,
+                                  size: 28,
+                                ),
+                        ),
+                        Container(
+                          width: 60,
+                          height: 32,
+                          decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(15),
+                            color: Colors.white.withOpacity(0.5),
+                          ),
+                          child: Row(
+                            mainAxisAlignment: MainAxisAlignment.center,
+                            children: [
+                              Text(
+                                '4.6',
+                                style: TextStyle(
+                                    color: Colors.white,
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 14),
+                              ),
+                              Icon(
+                                Icons.star_rate_rounded,
+                                color: Colors.yellow,
+                              ),
+                            ],
+                          ),
+                        )
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                    top: 225,
+                    child: Column(
+                      children: [
+                        Text(
+                          places.title,
+                          style: TextStyle(
+                              color: Colors.white.withOpacity(0.7),
+                              fontSize: 18,
+                              fontWeight: FontWeight.w500),
+                        ),
+                        SizedBox(height: 6),
+                        Container(
+                          width: 210,
+                          child: Text(
+                            places.descriptions,
+                            textAlign: TextAlign.center,
+                            maxLines: 3,
+                            style: TextStyle(
+                              wordSpacing: 1,
+                              height: 1.3,
+                              fontStyle: FontStyle.italic,
+                              color: Colors.white.withOpacity(0.6),
+                              fontSize: 12,
+                              fontWeight: FontWeight.w300,
+                            ),
+                          ),
+                        ),
+                      ],
+                    ),
+                  ),
+                  Positioned(
+                      bottom: 0,
+                      child: Container(
+                        height: 45,
+                        width: 120,
+                        decoration: BoxDecoration(
+                            color: Colors.white,
+                            borderRadius: BorderRadius.circular(10)),
+                        child: Center(
+                            child: Text(
+                          'Info',
+                          style: TextStyle(
+                              fontWeight: FontWeight.w700, fontSize: 18),
+                        )),
+                      )),
                 ],
               ),
+            ).toList(),
+            options: CarouselOptions(
+              viewportFraction: 0.7,
+              enlargeCenterPage: true,
+              enlargeFactor: 0.32,
+              disableCenter: true,
             ),
-            Positioned(
-                bottom: 0,
-                child: Container(
-                  height: 40,
-                  width: 100,
-                  decoration: BoxDecoration(
-                      color: Colors.white,
-                      borderRadius: BorderRadius.circular(10)),
-                  child: Center(
-                      child: Text(
-                    'Info',
-                    style: TextStyle(fontWeight: FontWeight.w700, fontSize: 18),
-                  )),
-                )),
-          ],
-        ),
-      ).toList(),
-      options: CarouselOptions(
-        viewportFraction: 0.65,
-        enlargeCenterPage: true,
-        enlargeFactor: 0.32,
-        disableCenter: true,
-      ),
-    );
+          );
   }
 }

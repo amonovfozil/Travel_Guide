@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:travel_guide/Data/Model_Places.dart';
-import 'package:travel_guide/Data/regions.dart';
+
+import '../../Data/models/Model_Places.dart';
+import '../../Data/models/regions.dart';
 
 class RegionMenu extends StatelessWidget {
   final String title;
@@ -18,13 +19,13 @@ class RegionMenu extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Container(
-      height: Isselect ? 115 : 95,
+      height: Isselect ? 145 : 120,
       child: Stack(
         alignment: AlignmentDirectional.topCenter,
         children: [
           SizedBox(
-            height: Isselect ? 85 : 70,
-            width: 100,
+            height: Isselect ? 115 : 90,
+            width: 120,
             child: Image.asset(
               imageUrl,
               fit: BoxFit.contain,

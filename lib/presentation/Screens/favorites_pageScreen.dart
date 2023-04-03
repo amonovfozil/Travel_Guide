@@ -1,10 +1,10 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_guide/Data/Model_Places.dart';
-import 'package:travel_guide/Data/Providers/Placeprovider.dart';
-import 'package:travel_guide/presentation/widgets/SideBar.dart';
+
+import '../../Data/models/Model_Places.dart';
+import '../../Data/Providers/Placeprovider.dart';
+import '../../presentation/widgets/SideBar.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -38,10 +38,10 @@ class FavoritesPage extends StatelessWidget {
                         child: Container(
                           height: 220,
                           width: double.infinity,
-                          child: Favorites[index].Image[0] is String
+                          child: Favorites[index].Image[0].startsWith('assets/')
                               ? Image.asset(Favorites[index].Image[0],
                                   fit: BoxFit.cover)
-                              : Image.file(
+                              : Image.network(
                                   Favorites[index].Image[0],
                                   fit: BoxFit.cover,
                                 ),

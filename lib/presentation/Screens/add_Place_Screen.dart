@@ -1,13 +1,15 @@
 import 'dart:io';
-
+import 'package:firebase_storage/firebase_storage.dart' as Firebase_storage;
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_guide/Data/Model_Places.dart';
-import 'package:travel_guide/Data/Providers/Placeprovider.dart';
-import 'package:travel_guide/Data/regions.dart';
-import 'package:travel_guide/presentation/widgets/SideBar.dart';
-import 'package:travel_guide/presentation/widgets/select_adress.dart';
+
+import '../../Data/models/Model_Places.dart';
+import '../../Data/Providers/Placeprovider.dart';
+import '../../Data/models/regions.dart';
+import '../../helper/HelperFireStorage.dart';
+import '../../presentation/widgets/SideBar.dart';
+import '../../presentation/widgets/select_adress.dart';
 import '.././widgets/take_photo.dart';
 
 class AddPlaceScreen extends StatefulWidget {
@@ -18,31 +20,55 @@ class AddPlaceScreen extends StatefulWidget {
 }
 
 class _AddPlaceScreenState extends State<AddPlaceScreen> {
-  File? _SaveFile;
+  List<File>? _SaveFile;
+  Placelocation? _PlacesLocation;
   bool typeCategory = true;
   String _selectRegion = 'Toshkent';
   String title = '';
   String Desc = '';
+  bool isdone = false;
+
   final _formkey = GlobalKey<FormState>();
-  void getSaveImage(File image) {
+
+  void getSaveImage(List<File> image) {
     _SaveFile = image;
   }
 
-  void SubmitStatePlase() {
-    print(_SaveFile);
+  void getPickedLocation(String adress, double Latitude, double Longitude) {
+    _PlacesLocation =
+        Placelocation(adress: adress, Latitude: Latitude, Longitude: Longitude);
+  }
 
+  void SubmitStatePlase() async {
+    setState(() {
+      isdone = true;
+    });
     if (_formkey.currentState!.validate() || _SaveFile != null) {
       _formkey.currentState!.save();
 
-      Provider.of<Placesproviders>(context, listen: false).getNewPlaces(
-          title,
-          Desc,
-          typeCategory ? category.nature : category.historical,
-          Provider.of<Regions>(context, listen: false)
-              .getregionid(_selectRegion),
-          [_SaveFile!]);
+      HelperFireStorage.saveImagesToFireStorage(
+              _SaveFile!, _selectRegion, title)
+          .then((value) {
+        if (value != null) {
+          Provider.of<Placesproviders>(context, listen: false).addNewPlaces(
+            place(
+                id: UniqueKey().toString(),
+                title: title,
+                regionId: Provider.of<Regions>(context, listen: false)
+                    .getregionid(_selectRegion),
+                Image: value,
+                descriptions: Desc,
+                TypeCategory:
+                    typeCategory ? category.nature : category.historical,
+                locations: _PlacesLocation!),
+          );
+          setState(() {
+            isdone = false;
+          });
+          Navigator.of(context).pushReplacementNamed('/');
+        }
+      });
     }
-    Navigator.of(context).pushReplacementNamed('/');
   }
 
   @override
@@ -131,7 +157,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                       SizedBox(height: 10),
                       Takephoto(getSaveImage),
                       SizedBox(height: 10),
-                      SelectAdress()
+                      SelectAdress(getPickedLocation),
                     ],
                   ),
                 ),
@@ -140,7 +166,13 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
           ),
           ElevatedButton(
             onPressed: SubmitStatePlase,
-            child: Text('Tayyor'),
+            child: isdone
+                ? const Center(
+                    child: CircularProgressIndicator(
+                      color: Colors.white,
+                    ),
+                  )
+                : const Text('Tayyor'),
             style: ElevatedButton.styleFrom(
                 tapTargetSize: MaterialTapTargetSize.shrinkWrap,
                 padding: const EdgeInsets.symmetric(vertical: 20)),

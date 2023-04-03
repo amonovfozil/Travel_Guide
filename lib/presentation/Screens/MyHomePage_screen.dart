@@ -1,9 +1,12 @@
-import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
-import 'package:travel_guide/Data/Model_Places.dart';
-import 'package:travel_guide/presentation/Screens/favorites_pageScreen.dart';
-import 'package:travel_guide/presentation/Screens/google_map.dart';
-import 'package:travel_guide/presentation/Screens/mainPage_screen.dart';
+import 'package:carousel_slider/carousel_slider.dart';
+import 'package:provider/provider.dart';
+import 'package:travel_guide/Data/Providers/Placeprovider.dart';
+
+import '../../Data/models/Model_Places.dart';
+import '../../presentation/Screens/favorites_pageScreen.dart';
+import '../../presentation/Screens/google_map.dart';
+import '../../presentation/Screens/mainPage_screen.dart';
 
 class MyHomePage extends StatefulWidget {
   const MyHomePage({super.key});
@@ -13,6 +16,8 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+ 
+
   int NavigationPageIndex = 0;
   @override
   Widget build(BuildContext context) {

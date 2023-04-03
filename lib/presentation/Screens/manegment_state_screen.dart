@@ -1,11 +1,11 @@
 import 'dart:io';
-
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_guide/Data/Model_Places.dart';
-import 'package:travel_guide/Data/Providers/Placeprovider.dart';
-import 'package:travel_guide/Data/regions.dart';
-import 'package:travel_guide/presentation/widgets/SideBar.dart';
+
+import '../../Data/models/Model_Places.dart';
+import '../../Data/Providers/Placeprovider.dart';
+import '../../Data/models/regions.dart';
+import '../../presentation/widgets/SideBar.dart';
 
 class StateManegmentScreen extends StatelessWidget {
   const StateManegmentScreen({super.key});
@@ -81,7 +81,7 @@ class PlacesFromregion extends StatelessWidget {
                     ),
                     child: places.Image[0].startsWith('asssets/')
                         ? Image.asset(places.Image[0])
-                        : Image.file(
+                        : Image.network(
                             places.Image[0],
                             fit: BoxFit.cover,
                           ),
