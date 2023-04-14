@@ -2,19 +2,22 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_guide/Data/models/Model_Places.dart';
-import 'package:travel_guide/Data/Providers/Placeprovider.dart';
-import 'package:travel_guide/Data/models/regions.dart';
-import 'package:travel_guide/presentation/Screens/MyHomePage_screen.dart';
-import 'package:travel_guide/presentation/Screens/add_Place_Screen.dart';
-import 'package:travel_guide/presentation/Screens/manegment_state_screen.dart';
+import 'package:travel_guide/presentation/Screens/AppInfo_screen.dart';
 
-import 'package:firebase_storage/firebase_storage.dart';
+import '../Data/models/Model_Places.dart';
+import '../Data/Providers/Placeprovider.dart';
+import '../Data/models/regions.dart';
+import '../presentation/Screens/Info_Place.dart';
+import '../presentation/Screens/MyHomePage_screen.dart';
+import '../presentation/Screens/Upload_Screen.dart';
+import '../presentation/Screens/google_map.dart';
+import '../presentation/Screens/manegment_state_screen.dart';
 
 void main() async {
   runApp(const MyApp());
   WidgetsFlutterBinding.ensureInitialized();
   SystemChrome.setEnabledSystemUIMode(SystemUiMode.immersiveSticky);
+  await Firebase.initializeApp();
 }
 
 class MyApp extends StatelessWidget {
@@ -36,13 +39,15 @@ class MyApp extends StatelessWidget {
         debugShowCheckedModeBanner: false,
         title: 'Travel Guide',
         theme: ThemeData(
-          primarySwatch: Colors.blueGrey,
+          primarySwatch: Colors.grey,
         ),
         home: MyHomePage(),
         routes: {
           'Manegment': (context) => StateManegmentScreen(),
           'AddPlaces': (context) => AddPlaceScreen(),
-          'PlaceRegion': (context) => PlacesFromregion()
+          'PlaceRegion': (context) => PlacesFromregion(),
+          'InfoPlace': (context) => InfoPlaceScreen(),
+          'AppInfo': (context) => AppInfo(),
         },
       ),
     );

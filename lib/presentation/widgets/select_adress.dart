@@ -59,14 +59,16 @@ class _SelectAdressState extends State<SelectAdress> {
             ),
             ElevatedButton.icon(
               onPressed: () async {
-                final selectedLocation = await Navigator.of(context)
-                    .push<LatLng>(MaterialPageRoute(
+                final selectedLocation =
+                    await Navigator.of(context).push<LatLng>(MaterialPageRoute(
                         builder: (ctx) => MapSample(
-                            IsSelected: true,
-                            placeslocation: Placelocation(
-                                adress: 'tashkent',
-                                Latitude: 39.6779101,
-                                Longitude: 66.9188384))));
+                              IsSelected: true,
+                              placeslocation: Placelocation(
+                                  adress: 'tashkent',
+                                  Latitude: 39.6779101,
+                                  Longitude: 66.9188384),
+                              ismap: false,
+                            )));
                 print('$selectedLocation salom');
                 if (selectedLocation != null) {
                   getlocationIMG(selectedLocation);

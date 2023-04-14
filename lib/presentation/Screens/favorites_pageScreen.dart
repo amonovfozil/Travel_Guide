@@ -1,6 +1,7 @@
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:travel_guide/presentation/Screens/google_map.dart';
 
 import '../../Data/models/Model_Places.dart';
 import '../../Data/Providers/Placeprovider.dart';
@@ -14,12 +15,12 @@ class FavoritesPage extends StatelessWidget {
     final Favorites = Provider.of<Placesproviders>(context).favorityPlaces();
     return Scaffold(
       appBar: AppBar(
+        toolbarHeight: 60,
         title: Text(
           'Sevimlilar',
         ),
         centerTitle: true,
       ),
-      drawer: SideBar(),
       body: Padding(
         padding: const EdgeInsets.all(10),
         child: Container(
@@ -32,58 +33,74 @@ class FavoritesPage extends StatelessWidget {
                       crossAxisSpacing: 10),
                   itemCount: Favorites.length,
                   itemBuilder: (contex, index) {
-                    return ClipRRect(
-                      borderRadius: BorderRadius.circular(15),
-                      child: GridTile(
-                        child: Container(
-                          height: 220,
-                          width: double.infinity,
-                          child: Favorites[index].Image[0].startsWith('assets/')
-                              ? Image.asset(Favorites[index].Image[0],
-                                  fit: BoxFit.cover)
-                              : Image.network(
-                                  Favorites[index].Image[0],
-                                  fit: BoxFit.cover,
+                    final Place = Favorites[index];
+                    return InkWell(
+                      onTap: () => Navigator.of(context)
+                          .pushNamed('InfoPlace', arguments: {
+                        'title': Place.title,
+                        'deck': Place.descriptions,
+                        'images': Place.Image,
+                        'location': Place.locations,
+                      }),
+                      child: ClipRRect(
+                        borderRadius: BorderRadius.circular(15),
+                        child: GridTile(
+                          child: Container(
+                            height: 220,
+                            width: double.infinity,
+                            child: Place.Image[0].startsWith('assets/')
+                                ? Image.asset(Place.Image[0], fit: BoxFit.cover)
+                                : Image.network(
+                                    Place.Image[0],
+                                    fit: BoxFit.cover,
+                                  ),
+                          ),
+                          footer: Container(
+                            height: 60,
+                            color: Colors.black.withOpacity(0.6),
+                            child: Row(
+                              mainAxisAlignment: MainAxisAlignment.spaceAround,
+                              children: [
+                                IconButton(
+                                  splashRadius: 20,
+                                  onPressed: () => Provider.of<Placesproviders>(
+                                          context,
+                                          listen: false)
+                                      .ToggleFavority(Place.id),
+                                  icon: Place.islike
+                                      ? Icon(
+                                          Icons.favorite,
+                                          color: Colors.red,
+                                        )
+                                      : Icon(
+                                          Icons.favorite_outline,
+                                          color: Colors.grey,
+                                        ),
                                 ),
-                        ),
-                        footer: Container(
-                          height: 60,
-                          color: Colors.black.withOpacity(0.6),
-                          child: Row(
-                            mainAxisAlignment: MainAxisAlignment.spaceAround,
-                            children: [
-                              IconButton(
-                                splashRadius: 20,
-                                onPressed: () => Provider.of<Placesproviders>(
-                                        context,
-                                        listen: false)
-                                    .ToggleFavority(Favorites[index].id),
-                                icon: Favorites[index].islike
-                                    ? Icon(
-                                        Icons.favorite,
-                                        color: Colors.red,
-                                      )
-                                    : Icon(
-                                        Icons.favorite_outline,
-                                        color: Colors.grey,
-                                      ),
-                              ),
-                              Text(
-                                Favorites[index].title,
-                                style: TextStyle(
-                                  color: Colors.white,
-                                  fontWeight: FontWeight.w600,
-                                  fontSize: 18,
-                                ),
-                              ),
-                              IconButton(
-                                  onPressed: () {},
-                                  icon: Icon(
-                                    Icons.location_on,
-                                    size: 28,
+                                Text(
+                                  Place.title,
+                                  style: TextStyle(
                                     color: Colors.white,
-                                  ))
-                            ],
+                                    fontWeight: FontWeight.w600,
+                                    fontSize: 18,
+                                  ),
+                                ),
+                                IconButton(
+                                    onPressed: () => Navigator.of(context)
+                                            .push(MaterialPageRoute(
+                                          builder: (ctx) => MapSample(
+                                            IsSelected: false,
+                                            placeslocation: Place.locations,
+                                            ismap: false,
+                                          ),
+                                        )),
+                                    icon: Icon(
+                                      Icons.location_on,
+                                      size: 28,
+                                      color: Colors.white,
+                                    ))
+                              ],
+                            ),
                           ),
                         ),
                       ),

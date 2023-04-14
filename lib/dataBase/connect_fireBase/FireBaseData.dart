@@ -3,8 +3,13 @@ import 'package:http/http.dart' as http;
 import 'package:travel_guide/Data/models/Model_Places.dart';
 
 class FireBaseData {
+  // dasturnni backend qismiga ya`ni FireBase ga ulovchi Url....
+
   static Uri url = Uri.parse(
       'https://travelguide-d0410-default-rtdb.firebaseio.com/Places.json');
+
+// ma`lumotlarni FireBase (RialTime data baza)ga yuborish.....
+
   static Future<String> SendDataToFireBase(place NewPlace) async {
     try {
       final response = await http.post(
@@ -32,6 +37,8 @@ class FireBaseData {
       rethrow;
     }
   }
+
+// ma`lumotlarni FireBasedan (RialTime data baza) dan olish.....
 
   static Future<List<place>> getDataFromFireBase() async {
     try {
@@ -61,11 +68,28 @@ class FireBaseData {
               islike: Place['islike'],
             ),
           );
-
-          print(Place['location']['latitude'].runtimeType);
         },
       );
       return loadPlaces;
+    } catch (error) {
+      rethrow;
+    }
+  }
+
+// ma`lumotni sevimlilarga qo`shish  yoki qo`shmaslik haqida FireBasega ma`lumot yuborish.....
+
+  static Future<void> SaveToggleLike(String id, bool islike) async {
+    final Url = Uri.parse(
+        'https://travelguide-d0410-default-rtdb.firebaseio.com/Places/$id.json');
+    try {
+      http.patch(
+        Url,
+        body: jsonEncode(
+          {
+            'islike': islike,
+          },
+        ),
+      );
     } catch (error) {
       rethrow;
     }

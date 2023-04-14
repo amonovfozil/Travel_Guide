@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-
 import '../../Data/models/Model_Places.dart';
 import '../../Data/models/regions.dart';
 
@@ -33,7 +32,7 @@ class RegionMenu extends StatelessWidget {
                   ? Colors.white
                   : isPage == category.historical
                       ? Colors.blueGrey
-                      : Colors.teal.shade700,
+                      : Colors.teal.shade900,
             ),
           ),
           Positioned(
@@ -44,8 +43,14 @@ class RegionMenu extends StatelessWidget {
                 title,
                 textAlign: TextAlign.center,
                 style: TextStyle(
-                    fontSize: title.length < 12 ? 16 : 12,
-                    fontWeight: FontWeight.bold),
+                  fontSize: title.length < 12 ? 16 : 12,
+                  fontWeight: FontWeight.bold,
+                  color: Isselect
+                      ? Colors.white
+                      : isPage == category.historical
+                          ? Colors.blueGrey
+                          : Colors.teal.shade800,
+                ),
               ),
             ),
           ),

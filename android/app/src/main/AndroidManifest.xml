@@ -1,12 +1,13 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.travel_guide">
-        
+  <uses-permission android:name="android.permission.ACCESS_COARSE_LOCATION"/>
+  <uses-permission android:name="android.permission.ACCESS_FINE_LOCATION"/>
    <application
         android:label="travel_guide"
         android:name="${applicationName}"
         android:icon="@mipmap/ic_launcher">
         <meta-data android:name="com.google.android.geo.API_KEY"
-               android:value="AIzaSyA_KgmbKV2ETz-s_ZvSX3aBsDoDmmedYb0"/>
+               android:value="f123b138-221a-4377-b559-1f117b8ca7b3"/>
         <activity
             android:name=".MainActivity"
             android:exported="true"

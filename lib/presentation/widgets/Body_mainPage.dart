@@ -4,7 +4,7 @@ import 'package:travel_guide/Data/models/regions.dart';
 
 import '../../Data/Providers/Placeprovider.dart';
 import '../../Data/models/Model_Places.dart';
-import '../../presentation/widgets/Places_list_iteams.dart';
+import 'Places_iteams.dart';
 
 class body_mainpageScreen extends StatelessWidget {
   const body_mainpageScreen({

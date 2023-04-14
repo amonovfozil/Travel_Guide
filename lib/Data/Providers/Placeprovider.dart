@@ -57,6 +57,7 @@ class Placesproviders with ChangeNotifier {
     final SelectPlaces =
         DataPlaces.listPlace.firstWhere((element) => element.id == id);
     SelectPlaces.islike = !SelectPlaces.islike;
+    FireBaseData.SaveToggleLike(id, SelectPlaces.islike);
     notifyListeners();
   }
 }

@@ -4,7 +4,7 @@ import 'package:provider/provider.dart';
 import '../../Data/Providers/Placeprovider.dart';
 import '../../Data/models/Model_Places.dart';
 import '../../Data/models/regions.dart';
-import '../../presentation/widgets/Body_mainPageScreen.dart';
+import '../widgets/Body_mainPage.dart';
 import '../../presentation/widgets/Region_Menu.dart';
 import '../../presentation/widgets/SideBar.dart';
 
@@ -20,7 +20,6 @@ class _MainPageScrrenState extends State<MainPageScrren>
   late TabController _tabcontroller = TabController(
       length: Provider.of<Regions>(context).list.length, vsync: this);
   @override
-  final _scaffoldKey = GlobalKey<ScaffoldState>();
   int indexImage = 0;
   category page = category.historical;
 
@@ -30,10 +29,9 @@ class _MainPageScrrenState extends State<MainPageScrren>
     return DefaultTabController(
       length: 2,
       child: Scaffold(
-        key: _scaffoldKey,
         backgroundColor: page == category.historical
-            ? Color.fromRGBO(7, 59, 75, 1)
-            : Color.fromRGBO(5, 58, 44, 1),
+            ? Color.fromARGB(245, 0, 0, 0).withBlue(70).withGreen(50)
+            : Color.fromARGB(246, 0, 0, 0).withBlue(40).withGreen(50),
         drawer: SideBar(),
         body: SingleChildScrollView(
           child: SafeArea(
@@ -42,20 +40,11 @@ class _MainPageScrrenState extends State<MainPageScrren>
               children: [
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 15),
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 18),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      IconButton(
-                        padding: const EdgeInsets.all(0),
-                        alignment: Alignment.centerLeft,
-                        onPressed: () =>
-                            _scaffoldKey.currentState?.openDrawer(),
-                        icon: Icon(
-                          Icons.format_align_left_sharp,
-                          color: Colors.white,
-                        ),
-                      ),
+                      SizedBox(width: 20),
                       Text(
                         'Travel Guide',
                         style: TextStyle(
@@ -65,8 +54,8 @@ class _MainPageScrrenState extends State<MainPageScrren>
                         ),
                       ),
                       CircleAvatar(
-                        radius: 14,
-                        backgroundImage: AssetImage('assets/images/Iuser.jpg'),
+                        radius: 16,
+                        backgroundImage: AssetImage('assets/images/logo2.png'),
                       )
                     ],
                   ),
@@ -85,9 +74,6 @@ class _MainPageScrrenState extends State<MainPageScrren>
                 Padding(
                   padding: const EdgeInsets.only(top: 20),
                   child: TabBar(
-                    unselectedLabelColor: page == category.historical
-                        ? Colors.blueGrey
-                        : Colors.teal,
                     splashFactory: NoSplash.splashFactory,
                     indicator: BoxDecoration(),
                     isScrollable: true,
@@ -119,6 +105,7 @@ class _MainPageScrrenState extends State<MainPageScrren>
                     child: Padding(
                       padding: const EdgeInsets.all(2),
                       child: TabBar(
+                        labelColor: Colors.white,
                         unselectedLabelColor: Colors.black,
                         labelStyle: TextStyle(
                             fontSize: 11, fontWeight: FontWeight.w600),
