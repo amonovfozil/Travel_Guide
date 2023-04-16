@@ -40,7 +40,7 @@ class _MainPageScrrenState extends State<MainPageScrren>
               children: [
                 Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 18),
+                      const EdgeInsets.symmetric(horizontal: 15, vertical: 10),
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
@@ -53,9 +53,10 @@ class _MainPageScrrenState extends State<MainPageScrren>
                           color: Colors.white,
                         ),
                       ),
-                      CircleAvatar(
-                        radius: 16,
-                        backgroundImage: AssetImage('assets/images/logo2.png'),
+                      SizedBox(
+                        height: 45,
+                        width: 45,
+                        child: Image.asset('assets/icon/icon.png'),
                       )
                     ],
                   ),

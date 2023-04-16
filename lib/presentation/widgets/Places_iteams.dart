@@ -2,7 +2,7 @@ import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_guide/presentation/Screens/Info_Place.dart';
+import 'package:travel_guide/presentation/Screens/InfoPlace_screen.dart';
 
 import '../../Data/models/Model_Places.dart';
 import '../../Data/Providers/Placeprovider.dart';
@@ -212,6 +212,7 @@ class _PlacesListIteamsState extends State<PlacesListIteams> {
               disableCenter: true,
               clipBehavior: Clip.hardEdge,
               enlargeStrategy: CenterPageEnlargeStrategy.zoom,
+              
             ),
           );
   }

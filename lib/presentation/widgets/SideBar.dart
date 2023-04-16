@@ -14,7 +14,7 @@ class SideBar extends StatelessWidget {
           children: [
             Container(
               child: Image.asset(
-                'assets/images/logo.png',
+                'assets/icon/icon3.png',
                 fit: BoxFit.cover,
                 height: 220,
                 width: double.infinity,
@@ -54,13 +54,16 @@ class SideBar extends StatelessWidget {
                           'Ma`lumotlarni Boshqarish',
                         ),
                       ),
+                      // SizedBox(
+                      //   height: 460,
+                      // ),
                       ListTile(
                         onTap: () => Navigator.of(context).pushNamed('AppInfo'),
                         leading: Icon(
                           Icons.info,
                         ),
                         title: Text(
-                          'Ma`lumotlarni Boshqarish',
+                          'Ilova Haqida',
                         ),
                       ),
                     ],

@@ -5,8 +5,8 @@ import 'package:flutter_polyline_points/flutter_polyline_points.dart';
 import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
 import 'package:path/path.dart';
-import 'package:travel_guide/constant/google_maps.dart';
-import 'package:travel_guide/presentation/widgets/SideBar.dart';
+import '../../constant/google_maps.dart';
+import '../../presentation/widgets/SideBar.dart';
 import '../../Data/models/Model_Places.dart';
 
 class MapSample extends StatefulWidget {

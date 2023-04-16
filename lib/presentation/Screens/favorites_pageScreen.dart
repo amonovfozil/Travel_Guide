@@ -13,6 +13,7 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Favorites = Provider.of<Placesproviders>(context).favorityPlaces();
+    print(Favorites);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60,
@@ -33,14 +34,15 @@ class FavoritesPage extends StatelessWidget {
                       crossAxisSpacing: 10),
                   itemCount: Favorites.length,
                   itemBuilder: (contex, index) {
-                    final Place = Favorites[index];
+                    place places = Favorites[index];
                     return InkWell(
                       onTap: () => Navigator.of(context)
                           .pushNamed('InfoPlace', arguments: {
-                        'title': Place.title,
-                        'deck': Place.descriptions,
-                        'images': Place.Image,
-                        'location': Place.locations,
+                        'title': places.title,
+                        'deck': places.descriptions,
+                        'images': places.Image,
+                        'location': places.locations,
+                        'region': places.regionId,
                       }),
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
@@ -48,10 +50,11 @@ class FavoritesPage extends StatelessWidget {
                           child: Container(
                             height: 220,
                             width: double.infinity,
-                            child: Place.Image[0].startsWith('assets/')
-                                ? Image.asset(Place.Image[0], fit: BoxFit.cover)
+                            child: places.Image[0].startsWith('assets/')
+                                ? Image.asset(places.Image[0],
+                                    fit: BoxFit.cover)
                                 : Image.network(
-                                    Place.Image[0],
+                                    places.Image[0],
                                     fit: BoxFit.cover,
                                   ),
                           ),
@@ -66,8 +69,8 @@ class FavoritesPage extends StatelessWidget {
                                   onPressed: () => Provider.of<Placesproviders>(
                                           context,
                                           listen: false)
-                                      .ToggleFavority(Place.id),
-                                  icon: Place.islike
+                                      .ToggleFavority(places.id),
+                                  icon: places.islike
                                       ? Icon(
                                           Icons.favorite,
                                           color: Colors.red,
@@ -78,7 +81,7 @@ class FavoritesPage extends StatelessWidget {
                                         ),
                                 ),
                                 Text(
-                                  Place.title,
+                                  places.title,
                                   style: TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
@@ -90,7 +93,7 @@ class FavoritesPage extends StatelessWidget {
                                             .push(MaterialPageRoute(
                                           builder: (ctx) => MapSample(
                                             IsSelected: false,
-                                            placeslocation: Place.locations,
+                                            placeslocation: places.locations,
                                             ismap: false,
                                           ),
                                         )),
