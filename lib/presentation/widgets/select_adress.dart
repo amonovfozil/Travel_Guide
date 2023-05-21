@@ -1,3 +1,5 @@
+// ignore_for_file: use_build_context_synchronously
+
 import 'package:flutter/material.dart';
 import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
@@ -8,7 +10,7 @@ import '../../presentation/Screens/google_map.dart';
 
 class SelectAdress extends StatefulWidget {
   final Function getPickedLocation;
-  SelectAdress(this.getPickedLocation, {super.key});
+  const SelectAdress(this.getPickedLocation, {super.key});
 
   @override
   State<SelectAdress> createState() => _SelectAdressState();
@@ -42,8 +44,8 @@ class _SelectAdressState extends State<SelectAdress> {
           children: [
             ElevatedButton.icon(
               onPressed: getCurrientLocation,
-              icon: Icon(Icons.location_on),
-              label: Text(
+              icon: const Icon(Icons.location_on),
+              label: const Text(
                 'Mening manzilim',
               ),
               style: ElevatedButton.styleFrom(
@@ -53,7 +55,7 @@ class _SelectAdressState extends State<SelectAdress> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 80)),
             ),
-            Text(
+            const Text(
               'or',
               style: TextStyle(color: Colors.white),
             ),
@@ -69,14 +71,13 @@ class _SelectAdressState extends State<SelectAdress> {
                                   Longitude: 66.9188384),
                               ismap: false,
                             )));
-                print('$selectedLocation salom');
                 if (selectedLocation != null) {
                   getlocationIMG(selectedLocation);
                 }
                 Navigator.of(context).pop();
               },
-              icon: Icon(Icons.map),
-              label: Text(
+              icon: const Icon(Icons.map),
+              label: const Text(
                 'Xaritani ochish',
               ),
               style: ElevatedButton.styleFrom(
@@ -86,7 +87,7 @@ class _SelectAdressState extends State<SelectAdress> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 80)),
             ),
-            SizedBox(height: 80),
+            const SizedBox(height: 80),
           ],
         );
       },

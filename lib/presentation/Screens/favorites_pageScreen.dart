@@ -1,11 +1,12 @@
-import 'dart:io';
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+
 import 'package:travel_guide/presentation/Screens/google_map.dart';
 
-import '../../Data/models/Model_Places.dart';
 import '../../Data/Providers/Placeprovider.dart';
-import '../../presentation/widgets/SideBar.dart';
+import '../../Data/models/Model_Places.dart';
 
 class FavoritesPage extends StatelessWidget {
   const FavoritesPage({super.key});
@@ -13,11 +14,11 @@ class FavoritesPage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final Favorites = Provider.of<Placesproviders>(context).favorityPlaces();
-    print(Favorites);
+    // print(Favorites);
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60,
-        title: Text(
+        title: const Text(
           'Sevimlilar',
         ),
         centerTitle: true,
@@ -27,7 +28,7 @@ class FavoritesPage extends StatelessWidget {
         child: Container(
           child: Favorites.isNotEmpty
               ? GridView.builder(
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                  gridDelegate: const SliverGridDelegateWithFixedCrossAxisCount(
                       crossAxisCount: 1,
                       childAspectRatio: 4 / 3,
                       mainAxisSpacing: 10,
@@ -47,17 +48,6 @@ class FavoritesPage extends StatelessWidget {
                       child: ClipRRect(
                         borderRadius: BorderRadius.circular(15),
                         child: GridTile(
-                          child: Container(
-                            height: 220,
-                            width: double.infinity,
-                            child: places.Image[0].startsWith('assets/')
-                                ? Image.asset(places.Image[0],
-                                    fit: BoxFit.cover)
-                                : Image.network(
-                                    places.Image[0],
-                                    fit: BoxFit.cover,
-                                  ),
-                          ),
                           footer: Container(
                             height: 60,
                             color: Colors.black.withOpacity(0.6),
@@ -71,18 +61,18 @@ class FavoritesPage extends StatelessWidget {
                                           listen: false)
                                       .ToggleFavority(places.id),
                                   icon: places.islike
-                                      ? Icon(
+                                      ? const Icon(
                                           Icons.favorite,
                                           color: Colors.red,
                                         )
-                                      : Icon(
+                                      : const Icon(
                                           Icons.favorite_outline,
                                           color: Colors.grey,
                                         ),
                                 ),
                                 Text(
                                   places.title,
-                                  style: TextStyle(
+                                  style: const TextStyle(
                                     color: Colors.white,
                                     fontWeight: FontWeight.w600,
                                     fontSize: 18,
@@ -97,13 +87,24 @@ class FavoritesPage extends StatelessWidget {
                                             ismap: false,
                                           ),
                                         )),
-                                    icon: Icon(
+                                    icon: const Icon(
                                       Icons.location_on,
                                       size: 28,
                                       color: Colors.white,
                                     ))
                               ],
                             ),
+                          ),
+                          child: SizedBox(
+                            height: 220,
+                            width: double.infinity,
+                            child: places.Image[0].startsWith('assets/')
+                                ? Image.asset(places.Image[0],
+                                    fit: BoxFit.cover)
+                                : Image.network(
+                                    places.Image[0],
+                                    fit: BoxFit.cover,
+                                  ),
                           ),
                         ),
                       ),

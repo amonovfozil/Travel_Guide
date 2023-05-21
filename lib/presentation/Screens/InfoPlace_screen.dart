@@ -1,10 +1,11 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_guide/Data/models/Model_Places.dart';
 import 'package:travel_guide/Data/models/regions.dart';
 import 'package:travel_guide/presentation/Screens/google_map.dart';
-import 'package:travel_guide/presentation/widgets/Places_iteams.dart';
 
 class InfoPlaceScreen extends StatelessWidget {
   const InfoPlaceScreen({super.key});
@@ -37,7 +38,7 @@ class InfoPlaceScreen extends StatelessWidget {
                   title: title),
               Column(
                 children: [
-                  SizedBox(height: 500 - 200),
+                  const SizedBox(height: 500 - 200),
                   Stack(
                     children: [
                       Container(
@@ -66,28 +67,26 @@ class InfoPlaceScreen extends StatelessWidget {
               ),
             ],
           ),
-          Container(
+          SizedBox(
             height: 200,
             child: SingleChildScrollView(
               child: Padding(
                 padding: const EdgeInsets.all(10),
-                child: Container(
-                  child: Padding(
-                    padding: const EdgeInsets.all(8.0),
-                    child: Text(
-                      Info,
-                      textAlign: TextAlign.justify,
-                      style: TextStyle(
-                        fontSize: 18,
-                        color: Colors.black,
-                      ),
+                child: Padding(
+                  padding: const EdgeInsets.all(8.0),
+                  child: Text(
+                    Info,
+                    textAlign: TextAlign.justify,
+                    style: const TextStyle(
+                      fontSize: 18,
+                      color: Colors.black,
                     ),
                   ),
                 ),
               ),
             ),
           ),
-          SizedBox(height: 20),
+          const SizedBox(height: 20),
           Padding(
             padding: const EdgeInsets.symmetric(horizontal: 10),
             child: Column(
@@ -104,7 +103,7 @@ class InfoPlaceScreen extends StatelessWidget {
                       ),
                     ),
                   ),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.location_on,
                     size: 15,
                   ),
@@ -153,7 +152,7 @@ class _MyWidgetState extends State<SliderImages> {
               clipBehavior: Clip.hardEdge,
               height: 500,
               width: double.infinity,
-              decoration: BoxDecoration(),
+              decoration: const BoxDecoration(),
               child: CarouselSlider(
                 items: widget.images
                     .map(
@@ -177,7 +176,7 @@ class _MyWidgetState extends State<SliderImages> {
                 ),
               ),
             ),
-            SizedBox(height: 10),
+            const SizedBox(height: 10),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               children: widget.images
@@ -212,7 +211,7 @@ class _MyWidgetState extends State<SliderImages> {
                   alignment: Alignment.centerLeft,
                   padding: const EdgeInsets.all(0),
                   onPressed: () => Navigator.of(context).pop(),
-                  icon: Icon(
+                  icon: const Icon(
                     Icons.arrow_back_ios,
                     color: Colors.black,
                   ),
@@ -223,14 +222,14 @@ class _MyWidgetState extends State<SliderImages> {
                   children: [
                     Text(
                       widget.title,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 18,
                           color: Colors.black,
                           fontWeight: FontWeight.bold),
                     ),
                     Text(
                       widget.region,
-                      style: TextStyle(
+                      style: const TextStyle(
                           fontSize: 14,
                           color: Colors.amber,
                           fontWeight: FontWeight.bold),

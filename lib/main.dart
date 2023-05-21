@@ -6,11 +6,9 @@ import '../../presentation/Screens/Home_screen.dart';
 import '../../presentation/Screens/AppInfo_screen.dart';
 import '../../presentation/Screens/InfoPlace_screen.dart';
 
-import '../Data/models/Model_Places.dart';
 import '../Data/Providers/Placeprovider.dart';
 import '../Data/models/regions.dart';
 import '../presentation/Screens/Upload_Screen.dart';
-import '../presentation/Screens/google_map.dart';
 import '../presentation/Screens/manegment_state_screen.dart';
 
 void main() async {
@@ -41,13 +39,13 @@ class MyApp extends StatelessWidget {
         theme: ThemeData(
           primarySwatch: Colors.grey,
         ),
-        home: MyHomePage(),
+        home: const MyHomePage(),
         routes: {
-          'Manegment': (context) => StateManegmentScreen(),
-          'AddPlaces': (context) => AddPlaceScreen(),
+          'Manegment': (context) => const StateManegmentScreen(),
+          'AddPlaces': (context) => const AddPlaceScreen(),
           'PlaceRegion': (context) => PlacesFromregion(),
-          'InfoPlace': (context) => InfoPlaceScreen(),
-          'AppInfo': (context) => AppInfo(),
+          'InfoPlace': (context) =>   const InfoPlaceScreen(),
+          'AppInfo': (context) => const AppInfo(),
         },
       ),
     );

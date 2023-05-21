@@ -1,6 +1,8 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
+
 import '../../Data/models/Model_Places.dart';
-import '../../Data/models/regions.dart';
 
 class RegionMenu extends StatelessWidget {
   final String title;
@@ -8,16 +10,17 @@ class RegionMenu extends StatelessWidget {
   final category isPage;
 
   final String imageUrl;
-  RegionMenu({
+  const RegionMenu({
+    Key? key,
     required this.title,
     required this.Isselect,
-    required this.imageUrl,
     required this.isPage,
-  });
+    required this.imageUrl,
+  }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    return Container(
+    return SizedBox(
       height: Isselect ? 145 : 120,
       child: Stack(
         alignment: AlignmentDirectional.topCenter,
@@ -37,7 +40,7 @@ class RegionMenu extends StatelessWidget {
           ),
           Positioned(
             bottom: 0,
-            child: Container(
+            child: SizedBox(
               width: 110,
               child: Text(
                 title,

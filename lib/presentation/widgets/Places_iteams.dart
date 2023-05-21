@@ -1,8 +1,8 @@
-import 'dart:io';
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:carousel_slider/carousel_slider.dart';
 import 'package:provider/provider.dart';
-import 'package:travel_guide/presentation/Screens/InfoPlace_screen.dart';
 
 import '../../Data/models/Model_Places.dart';
 import '../../Data/Providers/Placeprovider.dart';
@@ -11,7 +11,7 @@ class PlacesListIteams extends StatefulWidget {
   final int index;
   final category type;
 
-  PlacesListIteams({
+  const PlacesListIteams({super.key, 
     required this.index,
     required this.type,
   });
@@ -22,9 +22,9 @@ class PlacesListIteams extends StatefulWidget {
 
 class _PlacesListIteamsState extends State<PlacesListIteams> {
   var isloading = false;
+  @override
   void initState() {
     isloading = true;
-    // TODO: implement initState
     Future.delayed(Duration.zero).then((value) {
       Provider.of<Placesproviders>(context, listen: false)
           .getDataFromFireBase()
@@ -40,7 +40,7 @@ class _PlacesListIteamsState extends State<PlacesListIteams> {
     final Places = Provider.of<Placesproviders>(context)
         .placeFilterByRegion(widget.index, widget.type);
     return isloading
-        ? Center(
+        ? const Center(
             child: CircularProgressIndicator(),
           )
         : CarouselSlider(
@@ -105,12 +105,12 @@ class _PlacesListIteamsState extends State<PlacesListIteams> {
                                     listen: false)
                                 .ToggleFavority(places.id),
                             icon: places.islike
-                                ? Icon(
+                                ? const Icon(
                                     Icons.favorite,
                                     color: Colors.red,
                                     size: 28,
                                   )
-                                : Icon(
+                                : const Icon(
                                     Icons.favorite_outline,
                                     color: Colors.white,
                                     size: 28,
@@ -123,7 +123,7 @@ class _PlacesListIteamsState extends State<PlacesListIteams> {
                               borderRadius: BorderRadius.circular(15),
                               color: Colors.white.withOpacity(0.5),
                             ),
-                            child: Row(
+                            child: const Row(
                               mainAxisAlignment: MainAxisAlignment.center,
                               children: [
                                 Text(
@@ -154,8 +154,8 @@ class _PlacesListIteamsState extends State<PlacesListIteams> {
                                 fontSize: 18,
                                 fontWeight: FontWeight.w500),
                           ),
-                          SizedBox(height: 6),
-                          Container(
+                          const SizedBox(height: 6),
+                          SizedBox(
                             width: 210,
                             child: Text(
                               places.descriptions,
@@ -193,7 +193,7 @@ class _PlacesListIteamsState extends State<PlacesListIteams> {
                                 borderRadius: BorderRadius.circular(10),
                                 border:
                                     Border.all(width: 1, color: Colors.grey)),
-                            child: Center(
+                            child: const Center(
                                 child: Text(
                               'Batafsil...',
                               style: TextStyle(

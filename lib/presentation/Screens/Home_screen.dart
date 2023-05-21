@@ -1,8 +1,7 @@
+// ignore_for_file: file_names, non_constant_identifier_names
+
 import 'package:curved_navigation_bar/curved_navigation_bar.dart';
 import 'package:flutter/material.dart';
-import 'package:carousel_slider/carousel_slider.dart';
-import 'package:provider/provider.dart';
-import 'package:travel_guide/Data/Providers/Placeprovider.dart';
 import 'package:travel_guide/presentation/widgets/SideBar.dart';
 
 import '../../Data/models/Model_Places.dart';
@@ -26,11 +25,11 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       key: _scaffoldKey,
       extendBody: true,
-      drawer: SideBar(),
+      drawer: const SideBar(),
       body: Stack(
         children: [
           NavigationPageIndex == 1
-              ? MainPageScrren()
+              ? const MainPageScrren()
               : NavigationPageIndex == 0
                   ? MapSample(
                       IsSelected: false,
@@ -41,7 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       ismap: true,
                     )
                   : NavigationPageIndex == 2
-                      ? FavoritesPage()
+                      ? const FavoritesPage()
                       : const Center(
                           child: Text(
                             'Hali mavjud emas',
@@ -55,7 +54,7 @@ class _MyHomePageState extends State<MyHomePage> {
               padding: const EdgeInsets.all(0),
               alignment: Alignment.centerLeft,
               onPressed: () => _scaffoldKey.currentState?.openDrawer(),
-              icon: Icon(
+              icon: const Icon(
                 Icons.format_align_left_sharp,
                 color: Colors.white,
               ),
@@ -73,12 +72,12 @@ class _MyHomePageState extends State<MyHomePage> {
             width: 30,
             color: Colors.white,
           ),
-          Icon(
+          const Icon(
             Icons.home,
             color: Colors.white,
             size: 30,
           ),
-          Icon(
+          const Icon(
             Icons.favorite,
             color: Colors.white,
             size: 30,

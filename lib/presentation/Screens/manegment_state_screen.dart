@@ -1,8 +1,8 @@
-import 'dart:io';
+// ignore_for_file: avoid_types_as_parameter_names, use_key_in_widget_constructors, non_constant_identifier_names
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../Data/models/Model_Places.dart';
 import '../../Data/Providers/Placeprovider.dart';
 import '../../Data/models/regions.dart';
 import '../../presentation/widgets/SideBar.dart';
@@ -15,10 +15,10 @@ class StateManegmentScreen extends StatelessWidget {
     final regions = Provider.of<Regions>(context).list;
     return Scaffold(
       appBar: AppBar(
-        title: Text('Ma`lumotlarni boshqarish'),
+        title: const Text('Ma`lumotlarni boshqarish'),
         centerTitle: true,
       ),
-      drawer: SideBar(),
+      drawer: const SideBar(),
       body: SingleChildScrollView(
         child: Column(
           children: regions
@@ -64,7 +64,7 @@ class PlacesFromregion extends StatelessWidget {
           actions: [
             IconButton(
                 onPressed: () => Navigator.pushNamed(context, 'AddPlaces'),
-                icon: Icon(Icons.add))
+                icon: const Icon(Icons.add))
           ],
         ),
         body: SingleChildScrollView(
@@ -89,7 +89,7 @@ class PlacesFromregion extends StatelessWidget {
                   title: Text(places.title),
                   trailing: IconButton(
                     onPressed: () {},
-                    icon: Icon(
+                    icon: const Icon(
                       Icons.edit,
                     ),
                   ),

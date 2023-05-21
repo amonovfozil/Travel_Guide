@@ -1,15 +1,14 @@
-import 'dart:convert';
-import 'dart:io';
+
+// ignore_for_file: file_names, non_constant_identifier_names
 
 import 'package:flutter/cupertino.dart';
-import 'package:http/http.dart' as http;
 import 'package:travel_guide/Data/data.dart';
 
 import '../../dataBase/connect_fireBase/FireBaseData.dart';
 import '../../Data/models/Model_Places.dart';
 
 class Placesproviders with ChangeNotifier {
-  List<place> _places = [];
+  // List<place> _places = [];
   Future<void> getDataFromFireBase() async {
     await FireBaseData.getDataFromFireBase().then(
       (loadPlaces) {

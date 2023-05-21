@@ -1,4 +1,5 @@
-import 'dart:ui';
+
+// ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
 
@@ -12,17 +13,15 @@ class SideBar extends StatelessWidget {
         backgroundColor: Colors.white,
         body: Stack(
           children: [
-            Container(
-              child: Image.asset(
-                'assets/icon/icon3.png',
-                fit: BoxFit.cover,
-                height: 220,
-                width: double.infinity,
-              ),
+            Image.asset(
+              'assets/icon/icon3.png',
+              fit: BoxFit.cover,
+              height: 220,
+              width: double.infinity,
             ),
             Column(
               children: [
-                SizedBox(height: 200),
+                const SizedBox(height: 200),
                 Container(
                   decoration: BoxDecoration(
                     color: Colors.white,
@@ -33,24 +32,24 @@ class SideBar extends StatelessWidget {
                   child: Column(
                     mainAxisSize: MainAxisSize.min,
                     children: [
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       ListTile(
                         onTap: () =>
                             Navigator.of(context).pushReplacementNamed('/'),
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.home,
                         ),
-                        title: Text(
+                        title: const Text(
                           'Bosh Sahifa',
                         ),
                       ),
                       ListTile(
                         onTap: () => Navigator.of(context)
                             .pushReplacementNamed('AddPlaces'),
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.phonelink_setup_outlined,
                         ),
-                        title: Text(
+                        title: const Text(
                           'Ma`lumotlarni Boshqarish',
                         ),
                       ),
@@ -59,10 +58,10 @@ class SideBar extends StatelessWidget {
                       // ),
                       ListTile(
                         onTap: () => Navigator.of(context).pushNamed('AppInfo'),
-                        leading: Icon(
+                        leading: const Icon(
                           Icons.info,
                         ),
-                        title: Text(
+                        title: const Text(
                           'Ilova Haqida',
                         ),
                       ),

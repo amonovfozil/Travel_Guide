@@ -1,11 +1,15 @@
+// ignore_for_file: file_names, duplicate_ignore, non_constant_identifier_names
+
+// ignore_for_file: file_names
+
 import 'dart:io';
-import 'package:firebase_storage/firebase_storage.dart' as Firebase_storage;
+
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../Data/models/Model_Places.dart';
 import '../../Data/Providers/Placeprovider.dart';
+import '../../Data/models/Model_Places.dart';
 import '../../Data/models/regions.dart';
 import '../../helper/HelperFireStorage.dart';
 import '../../presentation/widgets/SideBar.dart';
@@ -78,10 +82,10 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
     return Scaffold(
       resizeToAvoidBottomInset: false,
       appBar: AppBar(
-        title: Text('Yangi Sayohat joyi qo`shish'),
+        title: const Text('Yangi Sayohat joyi qo`shish'),
         centerTitle: true,
       ),
-      drawer: SideBar(),
+      drawer: const SideBar(),
       body: Column(
         mainAxisAlignment: MainAxisAlignment.spaceBetween,
         crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -91,8 +95,8 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             value: _selectRegion,
             items: regions.map((reg) {
               return DropdownMenuItem(
-                child: Center(child: Text(reg.title)),
                 value: reg.title,
+                child: Center(child: Text(reg.title)),
               );
             }).toList(),
             onChanged: (value) {
@@ -106,7 +110,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
             child: Row(
               mainAxisAlignment: MainAxisAlignment.spaceBetween,
               children: [
-                Text('Historical Place'),
+                const Text('Historical Place'),
                 CupertinoSwitch(
                   value: typeCategory,
                   onChanged: (value) {
@@ -115,7 +119,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     });
                   },
                 ),
-                Text('Nature Place'),
+                const Text('Nature Place'),
               ],
             ),
           ),
@@ -128,7 +132,7 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                   child: Column(
                     children: [
                       TextFormField(
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           labelText: 'Joy nomi:',
                         ),
@@ -136,13 +140,14 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                           if (value == null || value.isEmpty) {
                             return 'Iltimos joy nomini kiriting';
                           }
+                          return null;
                         },
                         onSaved: (newValue) => title = newValue!,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       TextFormField(
                         maxLines: 3,
-                        decoration: InputDecoration(
+                        decoration: const InputDecoration(
                           border: OutlineInputBorder(),
                           alignLabelWithHint: true,
                           labelText: 'Joy haqida qisqacha ma`lumot:',
@@ -151,12 +156,13 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                           if (value == null || value.isEmpty) {
                             return 'Iltimos joyga ta`rif bering';
                           }
+                          return null;
                         },
                         onSaved: (newValue) => Desc = newValue!,
                       ),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       Takephoto(getSaveImage),
-                      SizedBox(height: 10),
+                      const SizedBox(height: 10),
                       SelectAdress(getPickedLocation),
                     ],
                   ),
@@ -166,6 +172,9 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
           ),
           ElevatedButton(
             onPressed: SubmitStatePlase,
+            style: ElevatedButton.styleFrom(
+                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+                padding: const EdgeInsets.symmetric(vertical: 20)),
             child: isdone
                 ? const Center(
                     child: CircularProgressIndicator(
@@ -173,9 +182,6 @@ class _AddPlaceScreenState extends State<AddPlaceScreen> {
                     ),
                   )
                 : const Text('Tayyor'),
-            style: ElevatedButton.styleFrom(
-                tapTargetSize: MaterialTapTargetSize.shrinkWrap,
-                padding: const EdgeInsets.symmetric(vertical: 20)),
           )
         ],
       ),

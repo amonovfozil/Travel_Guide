@@ -1,7 +1,8 @@
+// ignore_for_file: file_names, prefer_final_fields, avoid_types_as_parameter_names
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 
-import '../../Data/Providers/Placeprovider.dart';
 import '../../Data/models/Model_Places.dart';
 import '../../Data/models/regions.dart';
 import '../widgets/Body_mainPage.dart';
@@ -19,7 +20,6 @@ class _MainPageScrrenState extends State<MainPageScrren>
     with TickerProviderStateMixin {
   late TabController _tabcontroller = TabController(
       length: Provider.of<Regions>(context).list.length, vsync: this);
-  @override
   int indexImage = 0;
   category page = category.historical;
 
@@ -30,9 +30,9 @@ class _MainPageScrrenState extends State<MainPageScrren>
       length: 2,
       child: Scaffold(
         backgroundColor: page == category.historical
-            ? Color.fromARGB(245, 0, 0, 0).withBlue(70).withGreen(50)
-            : Color.fromARGB(246, 0, 0, 0).withBlue(40).withGreen(50),
-        drawer: SideBar(),
+            ? const Color.fromARGB(245, 0, 0, 0).withBlue(70).withGreen(50)
+            : const Color.fromARGB(246, 0, 0, 0).withBlue(40).withGreen(50),
+        drawer: const SideBar(),
         body: SingleChildScrollView(
           child: SafeArea(
             child: Column(
@@ -44,8 +44,8 @@ class _MainPageScrrenState extends State<MainPageScrren>
                   child: Row(
                     mainAxisAlignment: MainAxisAlignment.spaceBetween,
                     children: [
-                      SizedBox(width: 20),
-                      Text(
+                      const SizedBox(width: 20),
+                      const Text(
                         'Travel Guide',
                         style: TextStyle(
                           fontWeight: FontWeight.w700,
@@ -61,9 +61,9 @@ class _MainPageScrrenState extends State<MainPageScrren>
                     ],
                   ),
                 ),
-                Padding(
+                const Padding(
                   padding:
-                      const EdgeInsets.symmetric(horizontal: 15, vertical: 5),
+                      EdgeInsets.symmetric(horizontal: 15, vertical: 5),
                   child: Text(
                     'viloyatlat:',
                     style: TextStyle(
@@ -76,7 +76,7 @@ class _MainPageScrrenState extends State<MainPageScrren>
                   padding: const EdgeInsets.only(top: 20),
                   child: TabBar(
                     splashFactory: NoSplash.splashFactory,
-                    indicator: BoxDecoration(),
+                    indicator: const BoxDecoration(),
                     isScrollable: true,
                     controller: _tabcontroller,
                     tabs: regions
@@ -94,7 +94,7 @@ class _MainPageScrrenState extends State<MainPageScrren>
                     }),
                   ),
                 ),
-                SizedBox(height: 20),
+                const SizedBox(height: 20),
                 Padding(
                   padding:
                       const EdgeInsets.symmetric(horizontal: 35, vertical: 15),
@@ -108,15 +108,15 @@ class _MainPageScrrenState extends State<MainPageScrren>
                       child: TabBar(
                         labelColor: Colors.white,
                         unselectedLabelColor: Colors.black,
-                        labelStyle: TextStyle(
+                        labelStyle: const TextStyle(
                             fontSize: 11, fontWeight: FontWeight.w600),
                         indicator: BoxDecoration(
                           borderRadius: BorderRadius.circular(30),
                           color: page == category.historical
-                              ? Color.fromRGBO(9, 53, 67, 1)
-                              : Color.fromRGBO(2, 72, 52, 0.729),
+                              ? const Color.fromRGBO(9, 53, 67, 1)
+                              : const Color.fromRGBO(2, 72, 52, 0.729),
                         ),
-                        tabs: [
+                        tabs: const [
                           Tab(
                             text: 'TARIXIY OBIDALARI',
                           ),
@@ -139,7 +139,7 @@ class _MainPageScrrenState extends State<MainPageScrren>
                     ),
                   ),
                 ),
-                SizedBox(height: 15),
+                const SizedBox(height: 15),
                 body_mainpageScreen(tabcontroller: _tabcontroller),
               ],
             ),

@@ -1,12 +1,8 @@
-import 'dart:async';
+
+// ignore_for_file: non_constant_identifier_names, prefer_final_fields, avoid_types_as_parameter_names, sort_child_properties_last
 
 import 'package:flutter/material.dart';
-import 'package:flutter_polyline_points/flutter_polyline_points.dart';
-import 'package:location/location.dart';
 import 'package:google_maps_flutter/google_maps_flutter.dart';
-import 'package:path/path.dart';
-import '../../constant/google_maps.dart';
-import '../../presentation/widgets/SideBar.dart';
 import '../../Data/models/Model_Places.dart';
 
 class MapSample extends StatefulWidget {
@@ -26,7 +22,6 @@ class MapSample extends StatefulWidget {
 }
 
 class MapSampleState extends State<MapSample> {
-  final Completer<GoogleMapController> _controller = Completer();
   LatLng? _pickedLocation;
   LatLng? _currentlocation;
   double _zoommap = 16;
@@ -49,7 +44,7 @@ class MapSampleState extends State<MapSample> {
     return Scaffold(
       appBar: AppBar(
         toolbarHeight: 60,
-        title: Text(
+        title: const Text(
           'Xarita',
         ),
         centerTitle: true,
@@ -77,7 +72,7 @@ class MapSampleState extends State<MapSample> {
               onPressed: _pickedLocation == null
                   ? null
                   : () => Navigator.of(context).pop(_pickedLocation),
-              icon: Icon(
+              icon: const Icon(
                 Icons.check,
               ),
             ),
@@ -110,7 +105,7 @@ class MapSampleState extends State<MapSample> {
                             : _currentlocation == null
                                 ? {
                                     Marker(
-                                      markerId: MarkerId('m1'),
+                                      markerId: const MarkerId('m1'),
                                       position: LatLng(
                                           widget.placeslocation.Latitude,
                                           widget.placeslocation.Longitude),
@@ -118,25 +113,25 @@ class MapSampleState extends State<MapSample> {
                                   }
                                 : {
                                     Marker(
-                                      markerId: MarkerId('m1'),
+                                      markerId: const MarkerId('m1'),
                                       position: LatLng(
                                           widget.placeslocation.Latitude,
                                           widget.placeslocation.Longitude),
                                     ),
                                     Marker(
-                                        markerId: MarkerId('current1'),
+                                        markerId: const MarkerId('current1'),
                                         position: _currentlocation!)
                                   }
                     : {
                         Marker(
-                            markerId: MarkerId('m1'),
+                            markerId: const MarkerId('m1'),
                             position: _pickedLocation!),
                       },
                 circles: _pickedLocation == null
                     ? {}
                     : {
                         Circle(
-                          circleId: CircleId('c1'),
+                          circleId: const CircleId('c1'),
                           center: _pickedLocation!,
                           radius: 50,
                           strokeWidth: 2,

@@ -1,3 +1,6 @@
+// ignore: camel_case_types
+// ignore_for_file: file_names, camel_case_types, duplicate_ignore, non_constant_identifier_names
+
 enum category { nature, historical }
 
 class Placelocation {
@@ -5,9 +8,9 @@ class Placelocation {
   final double Longitude; // X-o`qi
   final String adress;
   Placelocation({
-    required this.adress,
     required this.Latitude,
     required this.Longitude,
+    required this.adress,
   });
 }
 

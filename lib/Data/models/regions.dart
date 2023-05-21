@@ -1,3 +1,5 @@
+// ignore_for_file: camel_case_types, non_constant_identifier_names
+
 import 'package:flutter/cupertino.dart';
 
 class region {
@@ -13,7 +15,7 @@ class region {
 }
 
 class Regions with ChangeNotifier {
-   List<region> _regions = [
+   final List<region> _regions = [
     region(
         id: '0',
         title: "Qoraqalpog`iston Respublikasi",

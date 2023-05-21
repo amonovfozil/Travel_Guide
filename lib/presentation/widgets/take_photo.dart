@@ -1,43 +1,41 @@
+// ignore_for_file: library_prefixes, non_constant_identifier_names, use_build_context_synchronously
+
 import 'dart:io';
 import 'package:flutter/material.dart';
 import 'package:path/path.dart' as path;
 import 'package:image_picker/image_picker.dart';
 import 'package:path_provider/path_provider.dart' as systemPath;
 
-import 'package:image_picker/image_picker.dart';
 
 class Takephoto extends StatefulWidget {
   final Function getSaveimage;
-  Takephoto(this.getSaveimage);
+  const Takephoto(this.getSaveimage, {super.key});
   @override
   State<Takephoto> createState() => _TakephotoState();
 }
 
 class _TakephotoState extends State<Takephoto> {
-  List<File> _imageFile = [];
+  final List<File> _imageFile = [];
   void _takePhotos() async {
     final imagePicker = ImagePicker();
     final Photos = await imagePicker.pickMultiImage();
-    if (Photos != null) {
-      setState(() {
-        Photos.map(
-          (photo) => _imageFile.add(
-            File(photo.path),
-          ),
-        ).toList();
-      });
-      final pathProvider = await systemPath.getApplicationDocumentsDirectory();
+    setState(() {
+      Photos.map(
+        (photo) => _imageFile.add(
+          File(photo.path),
+        ),
+      ).toList();
+    });
+    final pathProvider = await systemPath.getApplicationDocumentsDirectory();
 
-      final List<File> fileAdrees = [];
-      _imageFile
-          .map((photo) => photo
-              .copy('${pathProvider.path}/ ${path.basename(photo.path)}')
-              .then((value) => fileAdrees.add(value)))
-          .toList();
+    final List<File> fileAdrees = [];
+    _imageFile
+        .map((photo) => photo
+            .copy('${pathProvider.path}/ ${path.basename(photo.path)}')
+            .then((value) => fileAdrees.add(value)))
+        .toList();
 
-      widget.getSaveimage(fileAdrees);
-      print(fileAdrees);
-    }
+    widget.getSaveimage(fileAdrees);
     Navigator.of(context).pop();
   }
 
@@ -51,8 +49,8 @@ class _TakephotoState extends State<Takephoto> {
           children: [
             ElevatedButton.icon(
               onPressed: () => _takePhotos(),
-              icon: Icon(Icons.camera),
-              label: Text(
+              icon: const Icon(Icons.camera),
+              label: const Text(
                 'With Galery',
               ),
               style: ElevatedButton.styleFrom(
@@ -62,7 +60,7 @@ class _TakephotoState extends State<Takephoto> {
                   padding:
                       const EdgeInsets.symmetric(vertical: 15, horizontal: 80)),
             ),
-            SizedBox(height: 80),
+            const SizedBox(height: 80),
           ],
         );
       },
@@ -79,7 +77,7 @@ class _TakephotoState extends State<Takephoto> {
         decoration: BoxDecoration(
             border: Border.all(width: 1, color: Theme.of(context).primaryColor),
             borderRadius: BorderRadius.circular(7)),
-        child: _imageFile.length == 0
+        child: _imageFile.isEmpty
             ? const Center(
                 child: Text('Rasm kiriting'),
               )

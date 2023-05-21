@@ -1,8 +1,9 @@
+// ignore_for_file: file_names, camel_case_types
+
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:travel_guide/Data/models/regions.dart';
 
-import '../../Data/Providers/Placeprovider.dart';
 import '../../Data/models/Model_Places.dart';
 import 'Places_iteams.dart';
 
@@ -18,7 +19,7 @@ class body_mainpageScreen extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final regions = Provider.of<Regions>(context).list;
-    return Container(
+    return SizedBox(
       height: 380,
       width: double.infinity,
       child: TabBarView(

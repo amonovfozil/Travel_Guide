@@ -1,32 +1,33 @@
+// ignore: file_names
+// ignore_for_file: file_names, duplicate_ignore, non_constant_identifier_names
+
 import 'dart:io';
-import 'package:flutter/material.dart';
 
 import 'package:firebase_storage/firebase_storage.dart';
 
 class HelperFireStorage {
   static Future<List<String>?> saveImagesToFireStorage(
-      List<File> _SaveFile, String _selectRegion, String title) async {
-    List<String>? _imgesurls;
+      List<File> SaveFile, String selectRegion, String title) async {
+    List<String>? imgesurls;
     List<Future<void>> uploadTasks = [];
-    for (int i = 0; i < _SaveFile.length; i++) {
-      File file = _SaveFile[i];
+    for (int i = 0; i < SaveFile.length; i++) {
+      File file = SaveFile[i];
       String fileName = '$title$i';
       // generate a unique name for the file
       Reference ref = FirebaseStorage.instance
-          .ref('$_selectRegion')
-          .child('$title')
+          .ref(selectRegion)
+          .child(title)
           .child(fileName);
       UploadTask uploadTask = ref.putFile(file);
       // add an event listener to track the upload progress
       uploadTask.snapshotEvents.listen((TaskSnapshot snapshot) {
-        double progress = snapshot.bytesTransferred / snapshot.totalBytes;
       });
       uploadTasks.add(uploadTask.whenComplete(() {}));
 
       final ListResult result = await FirebaseStorage.instance
           .ref()
-          .child('$_selectRegion')
-          .child("$title")
+          .child(selectRegion)
+          .child(title)
           .listAll();
 
       final List<String> urls = [];
@@ -35,10 +36,10 @@ class HelperFireStorage {
         urls.add(url);
       }
       if (urls.isNotEmpty) {
-        _imgesurls = urls;
+        imgesurls = urls;
       }
     }
     await Future.wait(uploadTasks);
-    return _imgesurls;
+    return imgesurls;
   }
 }
