@@ -2,6 +2,7 @@
 
 import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
+import 'package:travel_guide/Data/models/regions.dart';
 
 import 'package:travel_guide/presentation/Screens/google_map.dart';
 
@@ -70,13 +71,28 @@ class FavoritesPage extends StatelessWidget {
                                           color: Colors.grey,
                                         ),
                                 ),
-                                Text(
-                                  places.title,
-                                  style: const TextStyle(
-                                    color: Colors.white,
-                                    fontWeight: FontWeight.w600,
-                                    fontSize: 18,
-                                  ),
+                                Column(
+                                  mainAxisSize: MainAxisSize.min,
+                                  children: [
+                                    Text(
+                                      places.title,
+                                      style: const TextStyle(
+                                        color: Colors.white,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 20,
+                                      ),
+                                    ),
+                                    Text(
+                                      Regions()
+                                          .list[int.parse(places.regionId)]
+                                          .title,
+                                      style: const TextStyle(
+                                        color: Colors.orange,
+                                        fontWeight: FontWeight.w600,
+                                        fontSize: 15,
+                                      ),
+                                    ),
+                                  ],
                                 ),
                                 IconButton(
                                     onPressed: () => Navigator.of(context)

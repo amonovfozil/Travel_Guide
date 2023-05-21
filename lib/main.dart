@@ -2,6 +2,7 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
 import 'package:provider/provider.dart';
+
 import '../../presentation/Screens/Home_screen.dart';
 import '../../presentation/Screens/AppInfo_screen.dart';
 import '../../presentation/Screens/InfoPlace_screen.dart';
@@ -44,7 +45,7 @@ class MyApp extends StatelessWidget {
           'Manegment': (context) => const StateManegmentScreen(),
           'AddPlaces': (context) => const AddPlaceScreen(),
           'PlaceRegion': (context) => PlacesFromregion(),
-          'InfoPlace': (context) =>   const InfoPlaceScreen(),
+          'InfoPlace': (context) => const InfoPlaceScreen(),
           'AppInfo': (context) => const AppInfo(),
         },
       ),
