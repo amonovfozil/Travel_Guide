@@ -1,12 +1,21 @@
 // ignore_for_file: file_names
 
 import 'package:flutter/material.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 class AppInfo extends StatelessWidget {
   const AppInfo({super.key});
 
   @override
   Widget build(BuildContext context) {
+    void pushlaunchURL(String url) async {
+      if (await canLaunchUrl(Uri.parse(url))) {
+        await launchUrl(Uri.parse(url));
+      } else {
+        throw 'Could not launch $url';
+      }
+    }
+
     return Scaffold(
       body: SafeArea(
         child: Column(
@@ -35,8 +44,8 @@ class AppInfo extends StatelessWidget {
                             bottomLeft: Radius.circular(100),
                           ),
                         ),
-                        child: Image.network(
-                          'https://indyguide-web-development.s3.us-east-2.amazonaws.com/listings/images/Uzbekistan-Gourmet-Tour-1594212517575.jpg',
+                        child: Image.asset(
+                          'assets/images/fon1.jpg',
                           fit: BoxFit.cover,
                         ),
                       ),
@@ -119,22 +128,33 @@ class AppInfo extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceEvenly,
                 children: [
-                  SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: Image.asset('assets/images/facebook.png'),
+                  InkWell(
+                    onTap: () => pushlaunchURL(
+                        'https://www.facebook.com/profile.php?id=100071581669785&mibextid=ZbWKwL'),
+                    child: SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: Image.asset('assets/images/facebook.png'),
+                    ),
                   ),
                   const SizedBox(width: 8),
-                  SizedBox(
-                    height: 45,
-                    width: 45,
-                    child: Image.asset('assets/images/inst1.png'),
+                  InkWell(
+                    onTap: () => pushlaunchURL(
+                        'https://instagram.com/amonov_fozil?igshid=NGExMmI2YTkyZg=='),
+                    child: SizedBox(
+                      height: 45,
+                      width: 45,
+                      child: Image.asset('assets/images/inst1.png'),
+                    ),
                   ),
                   const SizedBox(width: 8),
-                  SizedBox(
-                    height: 40,
-                    width: 40,
-                    child: Image.asset('assets/images/tel.png'),
+                  InkWell(
+                    onTap: () => pushlaunchURL('https://t.me/amonov_ff'),
+                    child: SizedBox(
+                      height: 40,
+                      width: 40,
+                      child: Image.asset('assets/images/tel.png'),
+                    ),
                   )
                 ],
               ),
