@@ -108,7 +108,7 @@ class InfoPlaceScreen extends StatelessWidget {
                     size: 15,
                   ),
                   label: const Text(
-                    'Location',
+                    'Joylashuv',
                     style: TextStyle(fontSize: 15),
                   ),
                   style: ElevatedButton.styleFrom(

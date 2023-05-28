@@ -65,7 +65,7 @@ class AppInfo extends StatelessWidget {
                     child: CircleAvatar(
                       backgroundColor: Colors.black.withOpacity(0.5),
                       backgroundImage: const AssetImage(
-                        'assets/images/logo31.png',
+                        'assets/icon/icon.png',
                       ),
                       radius: 55,
                     ),
